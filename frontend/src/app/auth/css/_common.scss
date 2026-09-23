@@ -1,0 +1,49 @@
+@use '../../shared/css/base';
+
+
+.box {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.box>input {
+    margin-top: 0.6rem;
+}
+
+
+$fields: ".box>input:not(input[type=" submit"])";
+
+
+#{$fields} {
+    border: 2px solid white;
+    border-radius: 4px;
+    transition: border 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+    min-width: 13vw;
+    padding: 0.2rem 0.5rem;
+
+    &:hover {
+        border-color: black;
+    }
+
+    &:focus {
+        transform: scale(1.1);
+    }
+}
+
+select {
+    min-width: 13vw;
+    text-align: center;
+}
+
+
+
+.btn-primary {
+    @include base.btn-primary(0.2rem, 1.2rem)
+}
+
+.btn-disabled {
+    padding: 0.2rem 1.2rem;
+    border: 2px solid grey;
+    border-radius: 4px;
+}

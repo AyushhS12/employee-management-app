@@ -1,0 +1,12 @@
+<div class="modal-background" (click)="closeModal()">
+    <div class="confirm-dialog" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="closeModal()"><img
+                src="./assets/close.svg"
+                alt="close"></button>
+        <span><ng-content></ng-content></span>
+        <div class="btns">
+            <button class="btn" [ngStyle]="{color:color}" (click)="handleConfirm(true)">Confirm</button>
+            <button class="btn" (click)="handleConfirm(false)">Cancel</button>
+        </div>
+    </div>
+</div>

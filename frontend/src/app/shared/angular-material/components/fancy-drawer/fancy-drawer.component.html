@@ -1,0 +1,8 @@
+<mat-drawer-container>
+    <mat-drawer #drawer [(opened)]="opened" [mode]="mode || 'over'" [position]="position">
+        <ng-content select="[sidebar]"></ng-content>
+    </mat-drawer>
+    <mat-drawer-content>
+        <ng-content></ng-content>
+    </mat-drawer-content>
+</mat-drawer-container>

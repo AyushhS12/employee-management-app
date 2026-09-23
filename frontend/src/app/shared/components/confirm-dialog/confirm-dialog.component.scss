@@ -1,0 +1,58 @@
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-dialog {
+    position: relative;
+    bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 2rem 3rem;
+    background: linear-gradient(45deg, rgb(16, 186, 81) 40%, white);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.btn {
+    @extend .cursor-pointer;
+    padding: 0.2rem 1rem;
+    margin: 0 0.3rem;
+    border: none;
+    border-radius: 1.2rem;
+    transition: color 0.2s ease;
+    transition: background 0.2s ease;
+    transition: transform 0.2s ease;
+}
+
+.btn:hover {
+    color: white;
+    background-color: black;
+    transform: scale(1.2);
+}
+
+.close-btn {
+    @extend .cursor-pointer;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    background-color: transparent;
+    border: none;
+    width: 1.2rem;
+}
+
+img {
+    width: inherit;
+}

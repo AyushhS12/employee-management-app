@@ -1,0 +1,21 @@
+<app-fancy-drawer #addEmployeeDrawer position="end">
+    <div class="main sidebar" sidebar>
+        <app-add-employee></app-add-employee>
+    </div>
+    <div class="main" *ngIf="employees">
+        <div class="heading">
+            <h2>All Employees</h2>
+            <!-- <app-fancy-button routerLink="/employee/add">Add employee</app-fancy-button> -->
+            <app-fancy-button (click)="addEmployeeDrawer.opened = !addEmployeeDrawer.opened">Add
+                employee</app-fancy-button>
+        </div>
+        <ul class="list">
+            <li *ngFor="let emp of employees">
+                <!-- <app-employee-card [employee]="emp"></app-employee-card> -->
+                <app-employee-card [employee]="emp" (updateEmployee)="handleUpdate($event)"
+                    (deletedId)="handleDelete($event)">
+                </app-employee-card>
+            </li>
+        </ul>
+    </div>
+</app-fancy-drawer>

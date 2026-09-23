@@ -1,0 +1,10 @@
+<ng-container (click)="onClick()">
+    <button mat-icon-button [color]="color" *ngIf="src; else text">
+        <img [src]="src" alt="">
+    </button>
+    <ng-template #text>
+        <button mat-raised-button [color]="color">
+            <ng-content></ng-content>
+        </button>
+    </ng-template>
+</ng-container>

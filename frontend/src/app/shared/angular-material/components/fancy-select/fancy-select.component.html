@@ -1,0 +1,6 @@
+<mat-form-field>
+  <mat-label>{{title}}</mat-label>
+  <mat-select [(value)]="selected" (selectionChange)="onSelectionChange($event)" [required]="required">
+    <mat-option [value]="item" *ngFor="let item of items">{{item}}</mat-option>
+  </mat-select>
+</mat-form-field>

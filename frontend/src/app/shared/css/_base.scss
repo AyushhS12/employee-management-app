@@ -1,0 +1,25 @@
+.main {
+    padding: 4rem 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@mixin btn-primary($px, $py) {
+    padding: $px $py;
+    background-color: #007bff;
+    border: 3px solid #007bff;
+    border-radius: 6px;
+    transition: border 0.3s ease;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    &:hover{
+        border-color: #0061c8;
+        transform: scale(1.1);
+    }
+}
+
+// .box>input[type="submit"] {
+//     @include btn-primary(0.4rem, 1.2rem)
+// }

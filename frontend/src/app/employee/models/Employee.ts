@@ -1,0 +1,11 @@
+import DepartmentModel from "./DepartmentModel";
+
+export default class Employee {
+    id!: number;
+    name!: string;
+    email!: string;
+    username!: string;
+    password!: string;
+    department!: DepartmentModel;
+    role!: string;
+}

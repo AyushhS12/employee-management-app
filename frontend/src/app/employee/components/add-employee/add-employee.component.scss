@@ -1,0 +1,60 @@
+@mixin flexbox {
+    display: flex;
+    flex-direction: column;
+}
+
+.main{
+    // padding-top: 4rem;
+    width: 30vw;
+    @include flexbox();
+    align-items: center;
+}
+
+form {
+    @include flexbox();
+    // padding: 4rem 0;
+}
+
+
+.box {
+    @include flexbox();
+    justify-content: center;
+    align-items: center;
+    padding: 0.1rem;
+}
+
+.box>* {
+    margin: 0.1rem 0;
+}
+
+.box input {
+    width: 30%;
+    padding: 0.4rem 0.2rem;
+    transition: border 0.5s ease;
+    transition: transform 0.5s ease;
+    border: 2px solid grey;
+    border-radius: 8px;
+}
+
+.box input:hover{
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.box input:focus{
+    transform: scale(1.03);
+}
+
+input[type="submit"] {
+    min-width: 10vw;
+    transition: background-color 0.3s ease;
+    transition: transform 0.2s ease;
+    border-radius: 3px;
+}
+
+.submit-btn:hover {
+    background-color: rgb(160, 250, 14);
+    transform: scale(1.1);
+    border: 2px solid black;
+    cursor: pointer;
+}

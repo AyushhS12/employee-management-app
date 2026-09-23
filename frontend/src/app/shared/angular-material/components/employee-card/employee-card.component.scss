@@ -1,0 +1,23 @@
+mat-card-content {
+    padding: 0 1.6vw;
+}
+
+mat-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.footer {
+    padding: 1.2rem 1.2rem;
+}
+
+mat-card-actions {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+}

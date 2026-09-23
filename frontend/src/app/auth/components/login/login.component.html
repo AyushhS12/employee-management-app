@@ -1,0 +1,14 @@
+<form class="main" #loginForm="ngForm" (ngSubmit)="handleSubmit(loginForm)">
+    <div class="box">
+        <label for="username">Enter Username</label><br>
+        <input type="text" required [(ngModel)]="username" maxlength="40" name="username" id="username">
+    </div>
+    <div class="box">
+        <label for="password">Enter Password</label><br>
+        <input type="password" required ngModel required name="password" id="password">
+    </div>
+    <div class="box">
+        <input [disabled]="loginForm.invalid" [ngClass]="loginForm.invalid?'btn-disabled':'btn-primary'" type="submit"
+            value="Login">
+    </div>
+</form>

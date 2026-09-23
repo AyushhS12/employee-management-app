@@ -1,0 +1,9 @@
+﻿namespace Authentication.Application.Queries.EmployeeQueries;
+
+public class GetEmployeesByIndexAndSizeQuery : IRequest<IList<EmployeeDTO>>
+{
+    public int PageIndex { get; set; }
+    public int PageSize { get; set; }
+
+    public string Order { get; set; } = "asc";
+}

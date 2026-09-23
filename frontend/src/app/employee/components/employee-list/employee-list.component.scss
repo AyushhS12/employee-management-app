@@ -1,0 +1,26 @@
+@use '../../../shared/css/base';
+
+.list{
+    list-style: none;
+    min-width: 100vw;
+}
+
+.list li{
+    background-color: white;
+    margin: 0 3rem;
+    margin-bottom: 1.2rem;
+}
+
+.heading{
+    display: flex;
+    gap: 0.8rem;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 3rem;
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+// .sidebar{
+//     // margin-top: 4rem;
+// }

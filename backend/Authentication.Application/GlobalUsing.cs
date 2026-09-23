@@ -1,0 +1,16 @@
+﻿global using Authentication.Application.Commands.EmployeeCommands;
+global using Authentication.Core.Abstractions.Repositories;
+global using Authentication.Core.DTOs;
+global using Authentication.Core.Entities;
+global using Authentication.Infrastructure;
+global using AutoMapper;
+global using FluentValidation;
+global using MediatR;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.IdentityModel.Tokens;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using System.Text;

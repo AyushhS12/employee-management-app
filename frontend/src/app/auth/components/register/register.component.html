@@ -1,0 +1,33 @@
+<form class="main" #registrationForm="ngForm" (ngSubmit)="handleRegistration(registrationForm)">
+    <div class="box">
+        <label for="name">Enter Name</label><br>
+        <input required type="text" minlength="3" ngModel name="name" id="name">
+    </div>
+    <div class="box">
+        <label for="email">Enter Email</label><br>
+        <input required type="email" maxlength="100" ngModel name="email" id="email">
+    </div>
+    <div class="box">
+        <label for="username">Enter Username</label><br>
+        <input required type="text" maxlength="40" ngModel name="username" id="username">
+    </div>
+    <div class="box">
+        <label for="password">Enter Password</label><br>
+        <input required type="password" ngModel name="password" id="password">
+    </div>
+    <div class="box">
+        <select required ngModel name="department" id="department">
+            <option value="">Select Department</option>
+            <option *ngFor="let department of departments; let i=index" [value]="department">{{department}}</option>
+        </select>
+    </div>
+    <div class="box">
+        <select required ngModel name="role" id="role">
+            <option value="">Select Role</option>
+            <option *ngFor="let role of roles; let i=index" [value]="role">{{role}}</option>
+        </select>
+    </div>
+    <div class="box">
+        <input [disabled]="registrationForm.invalid" [ngClass]="registrationForm.invalid?'btn-disabled':'btn-primary'" type="submit" value="Register">
+    </div>
+</form>

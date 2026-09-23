@@ -1,0 +1,51 @@
+<div class="main">
+    <h2>Add Employee</h2>
+    <form #todoForm="ngForm" (ngSubmit)="handleSubmit(todoForm)">
+        <div class="box">
+            <!-- <label for="name">Enter Name</label>
+            <input required minlength="3" [(ngModel)]="emp.name" name="name" type="text" placeholder="Enter your name"
+            id="name"> -->
+            <app-fancy-input placeholder="Name" required label="Enter Name" name="name"
+                [(ngModel)]="emp.name"></app-fancy-input>
+        </div>
+        <div class="box">
+            <!-- <label for="username">Enter Username</label>
+    <input required [(ngModel)]="emp.username" name="username" type="text" placeholder="Enter your username"
+    id="username"> -->
+            <app-fancy-input placeholder="Username" required label="Enter Username" name="username"
+                [(ngModel)]="emp.username"></app-fancy-input>
+        </div>
+        <div class="box">
+            <!-- <label for="email">Enter Email</label>
+        <input required [(ngModel)]="emp.email" name="email" type="text" placeholder="Enter your email" id="email"> -->
+            <app-fancy-input placeholder="Ex: a@a.com" required label="Enter Email" name="email"
+                [(ngModel)]="emp.email"></app-fancy-input>
+        </div>
+        <div class="box">
+            <!-- <label for="department">Department</label>
+        <select required name="department" ngModel id="department">
+            <option value="">Select Department</option>
+            <option *ngFor="let department of departments; let i=index" [value]="department">{{i + 1}}. {{department}}
+            </option>
+        </select> -->
+            <!-- <input required [(ngModel)]="emp.department" name="department" type="text" placeholder="Enter department" id="department"> -->
+            <app-fancy-select [(ngModel)]="emp.department" required name="department" class="select" title="Department"
+                [items]="departments"></app-fancy-select>
+        </div>
+        <div class="box">
+            <app-fancy-select [(ngModel)]="emp.role" required name="role" class="select" title="Role"
+                [items]="roles"></app-fancy-select>
+            <!-- <label for="role">Role</label>
+        <select required name="role" ngModel id="role">
+            <option value="">Select Role</option>
+            <option *ngFor="let role of roles; let i=index" [value]="role">{{i + 1}}. {{role}}</option>
+        </select> -->
+        </div>
+        <div class="box">
+            <input [class.submit-btn]="todoForm.valid" [disabled]="todoForm.invalid" type="submit" value="Add Employee">
+        </div>
+    </form>
+    <app-confirm-dialog #confirmDialog *ngIf="showConfirm" (ok)="handleConfirm($event)"
+        (close)="handleClose($event)">Are
+        you sure ?</app-confirm-dialog>
+</div>

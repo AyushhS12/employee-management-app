@@ -1,0 +1,30 @@
+@use '../../../shared/css/base';
+
+*{
+    box-sizing: border-box;
+}
+
+div{
+    min-width: 80vw;
+}
+
+.department > *{
+    margin-bottom: 2rem;
+}
+
+.employee-table{
+    min-width: 80vw;
+    text-align: center;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border-spacing: 0;
+    // display: flex;
+    // gap: 2rem;
+}
+
+th, td{
+    border: 2px solid black;
+    margin: 0;
+    padding: 1.2rem 0;
+    background-color: white;
+}

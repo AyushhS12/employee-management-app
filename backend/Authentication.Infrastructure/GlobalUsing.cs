@@ -1,0 +1,10 @@
+﻿global using Authentication.Core.Abstractions.Repositories;
+global using Authentication.Core.DTOs;
+global using Authentication.Core.Entities;
+global using Authentication.Infrastructure.Configs;
+global using Authentication.Infrastructure.DatabaseContext;
+global using Authentication.Infrastructure.Repositories;
+global using AutoMapper;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Microsoft.Extensions.DependencyInjection;

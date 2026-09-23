@@ -1,0 +1,16 @@
+div{
+    padding: 5rem 0;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    max-width: 80%;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+article{
+    line-height: 1.5;
+    font-family: "Ubuntu";
+    font-size: 1.5rem;
+}

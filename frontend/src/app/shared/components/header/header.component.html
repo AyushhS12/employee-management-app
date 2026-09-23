@@ -1,0 +1,27 @@
+<header>
+    <nav>
+        <ul class="list">
+            <div class="links">
+                <li #li>
+                    <a #link class="link" routerLink="home" routerLinkActive="link-active">Home</a>
+                </li>
+                <li #li>
+                    <a #link class="link" routerLink="employee/all" routerLinkActive="link-active">Employee</a>
+                </li>
+                <li #li>
+                    <a #link class="link" routerLink="department/all" routerLinkActive="link-active">Department</a>
+                </li>
+                <li #li>
+                    <a #link class="link" routerLink="about" routerLinkActive="link-active">About</a>
+                </li>
+            </div>
+            <div class="btns">
+                <ng-container *ngIf="!isLoggedIn()">
+                    <button routerLink="auth/login" routerLinkActive="hidden" class="auth">Login</button>
+                    <button routerLink="auth/register" routerLinkActive="hidden" class="auth">Register</button>
+                </ng-container>
+                <li #li class="logo"><a routerLink="/"><img src="./favicon.ico" alt="logo"></a></li>
+            </div>
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,31 @@
+<div class="main" *ngIf="departments">
+    <h2>All Departments</h2>
+    <div *ngFor="let dept of departments | async; trackBy trackDepartment">
+        <div class="department">
+            <h4>{{dept.name}}</h4>
+            <ng-container *ngIf="dept.employees.length === 0; else employeeTable">
+                <div>
+                    <h4>No employees belong to this department</h4>
+                </div>
+            </ng-container>
+            <ng-template #employeeTable>
+                <table class="employee-table" align="center">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                    <tr class="employee" *ngFor="let employee of dept.employees; let i=index; trackBy trackEmployee">
+                        <td>{{employee.id}}</td>
+                        <td>{{employee.name}}</td>
+                        <td>{{employee.username}}</td>
+                        <td>{{employee.email}}</td>
+                        <td>{{employee.role}}</td>
+                    </tr>
+                </table>
+            </ng-template>
+        </div>
+    </div>
+</div>
