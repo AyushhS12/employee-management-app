@@ -17,7 +17,7 @@ export class PasswordValidatorDirective implements Validator {
 
   validate(control: AbstractControl<string>): ValidationErrors | null {
     const data = control.value
-    
+
     if (!data) return null
 
     const hasUpperCase = /[A-Z]+/.test(data)
@@ -26,8 +26,10 @@ export class PasswordValidatorDirective implements Validator {
 
     const hasNumericValue = /[1-9]+/.test(data)
 
-    const isValid = hasUpperCase && hasLowerCase && hasNumericValue
-    return !isValid ? { hasUpperCase, hasLowerCase, hasNumericValue } : null
+    const containsSpace = data.includes(' ');
+
+    const isValid = hasUpperCase && hasLowerCase && hasNumericValue && containsSpace
+    return !isValid ? { hasUpperCase, hasLowerCase, hasNumericValue, containsSpace } : null
 
     // const hasUpperCase = /[A-Z]+/.test(data)
 

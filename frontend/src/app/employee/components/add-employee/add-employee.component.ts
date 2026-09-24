@@ -28,7 +28,7 @@ export class AddEmployeeComponent {
   @Output() employeeCreated = new EventEmitter<Employee>()
   emp: Employee = new Employee();
 
-  openDialog(title: string, content: string) {
+  openDialog(title: string, content?: string) {
     return this.dialog.open(
       ConfirmDialogComponent,
       {
@@ -41,15 +41,16 @@ export class AddEmployeeComponent {
   }
 
   handleConfirm() {
-    const dialog = this.openDialog("Are you sure ?", "")
-    dialog.afterClosed().subscribe((data: boolean) => {
-      const emp = {
-        ...this.form.value,
-        id: this.emp.id
-      }
-      this.employeeCreated.emit(emp);
-      this.form.resetForm({ "department": '', "role": '' })
-    })
+    // const dialog = this.openDialog("Are you sure ?")
+    // dialog.afterClosed().subscribe((data: boolean) => {
+    //   if(data){
+    //     const emp = {
+    //       ...this.form.value,
+    //     }
+    //     this.employeeCreated.emit(emp);
+    //     this.form.resetForm({ "department": '', "role": '' })
+    //   }
+    // })
   }
 
   handleSubmit(form: NgForm) {

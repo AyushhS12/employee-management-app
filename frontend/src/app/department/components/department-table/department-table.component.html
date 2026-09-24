@@ -1,0 +1,51 @@
+<div class="main" *ngIf="employees.length==0; else employeePresent">
+    No Employees Present
+</div>
+<ng-template #employeePresent>
+    <table class="table table-hover table-bordered text-center" mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+            <td mat-cell *matCellDef="let employee">
+                {{employee.id}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let employee">
+                {{employee.name}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef>Username</th>
+            <td mat-cell *matCellDef="let employee">
+                {{employee.username}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let employee">
+                {{employee.email}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef>Department</th>
+            <td mat-cell *matCellDef="let employee">
+                {{employee.department}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef>Role</th>
+            <td mat-cell *matCellDef="let employee">
+                {{employee.role}}
+            </td>
+        </ng-container>
+
+        <tr class="fw-bold" mat-header-row
+            *matHeaderRowDef="['id','name','username','email','department','role']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['id','name','username','email','department','role']">
+        </tr>
+    </table>
+    <mat-paginator [pageSize]="5" , [pageSizeOptions]="[5,10,15,20,25]" showFirstLastButtons>
+
+    </mat-paginator>
+</ng-template>

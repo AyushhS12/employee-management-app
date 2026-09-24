@@ -1,31 +1,55 @@
-<div class="main" *ngIf="departments">
-    <h2>All Departments</h2>
-    <div *ngFor="let dept of departments | async; trackBy trackDepartment">
-        <div class="department">
+<app-fancy-drawer #addDepartmentDrawer position="end">
+    <div class="main" sidebar>
+        <form #addDepartmentForm="ngForm">
+            <mat-form-field>
+                <mat-label>
+                    Department Name
+                </mat-label>
+                <input matInput ngModel #name="ngModel" name="name" type="text">
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="main" *ngIf="departments">
+        <div class="mt-3">
+            <h2>All Departments</h2>
+            <div class="search-and-add d-flex justify-content-between align-items-center">
+                <mat-form-field>
+                    <mat-label>Search</mat-label>
+                    <input matInput type="search" (input)="applyFilter($event)">
+                </mat-form-field>
+                <button mat-stroked-button (click)="addDepartmentDrawer.opened = !addDepartmentDrawer.opened"
+                    class="btn btn-outline-dark fw-bold">Add Department</button>
+            </div>
+        </div>
+        <div class="my-3 py-1" *ngFor="let dept of departments; trackBy trackDepartment">
+            <!-- <div class="department">
+                <h4>{{dept.name}}</h4>
+                <ng-container *ngIf="dept.employees.length === 0; else employeeTable">
+                    <div>
+                        <h4>No employees found for this department</h4>
+                    </div>
+                </ng-container>
+                <ng-template #employeeTable>
+                    <table class="employee-table" align="center">
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                        <tr class="employee" *ngFor="let employee of dept.employees; let i=index; trackBy trackEmployee">
+                            <td>{{employee.id}}</td>
+                            <td>{{employee.name}}</td>
+                            <td>{{employee.username}}</td>
+                            <td>{{employee.email}}</td>
+                            <td>{{employee.role}}</td>
+                        </tr>
+                    </table>
+                </ng-template>
+            </div> -->
             <h4>{{dept.name}}</h4>
-            <ng-container *ngIf="dept.employees.length === 0; else employeeTable">
-                <div>
-                    <h4>No employees found for this department</h4>
-                </div>
-            </ng-container>
-            <ng-template #employeeTable>
-                <table class="employee-table" align="center">
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                    </tr>
-                    <tr class="employee" *ngFor="let employee of dept.employees; let i=index; trackBy trackEmployee">
-                        <td>{{employee.id}}</td>
-                        <td>{{employee.name}}</td>
-                        <td>{{employee.username}}</td>
-                        <td>{{employee.email}}</td>
-                        <td>{{employee.role}}</td>
-                    </tr>
-                </table>
-            </ng-template>
+            <app-department-table [employees]="dept.employees"></app-department-table>
         </div>
     </div>
-</div>
+</app-fancy-drawer>

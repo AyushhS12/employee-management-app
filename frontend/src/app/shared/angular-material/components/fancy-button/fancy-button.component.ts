@@ -10,7 +10,7 @@ export class FancyButtonComponent {
   @Input() color: string = "primary"
   @Input() disabled: boolean = false
 
-  @Output() click = new EventEmitter()
+  @Output() clicked = new EventEmitter()
 
-  onClick = () => this.click.emit()
+  onClick = () => this.clicked.emit()
 }

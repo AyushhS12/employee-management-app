@@ -4,27 +4,32 @@
     box-sizing: border-box;
 }
 
+.mt-3 > *{
+    margin: 1rem 0;
+}
+
 div{
     min-width: 80vw;
+}
+
+div[sidebar]{
+    min-width: 40vw;
 }
 
 .department > *{
     margin-bottom: 2rem;
 }
 
-.employee-table{
-    min-width: 80vw;
-    text-align: center;
-    box-sizing: border-box;
-    border-collapse: collapse;
-    border-spacing: 0;
-    // display: flex;
-    // gap: 2rem;
-}
 
-th, td{
-    border: 2px solid black;
-    margin: 0;
-    padding: 1.2rem 0;
-    background-color: white;
+th{
+    font-weight: bold;
 }
+th,td{
+    text-align: center;
+}
+// th, td{
+//     border: 2px solid black;
+//     margin: 0;
+//     padding: 1.2rem 0;
+//     background-color: white;
+// }

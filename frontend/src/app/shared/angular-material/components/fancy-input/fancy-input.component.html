@@ -1,13 +1,10 @@
 <mat-form-field>
     <mat-label>{{label}}</mat-label>
-    <input 
-        matInput 
-        [placeholder]="placeholder" 
-        [name]="name" 
-        [value]="value" 
-        (input)="onInput($event)"
-        (blur)="onBlur()"
-        [required]="required"
-        #input
-    >
+    <input matInput [placeholder]="placeholder" [name]="name" [value]="value" (input)="onInput($event)"
+        (blur)="onBlur()" [required]="required?true:false" [type]="type">
+    <mat-error *ngIf="control.touched && control.invalid" mat-icon-button type="button">
+        <span *ngIf="control.errors">
+            {{name}} is invalid
+        </span>
+    </mat-error>
 </mat-form-field>

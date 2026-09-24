@@ -50,7 +50,7 @@
                 (click)="finishEditMode()"></app-fancy-button>
             <app-fancy-button [ngStyle]="{display: editMode?'none':''}" src="/assets/edit.svg"
                 (click)="turnOnEditMode()"></app-fancy-button>
-            <app-fancy-button src="/assets/delete.svg" (click)="onDelete()"></app-fancy-button>
+            <app-fancy-button src="/assets/delete.svg" (clicked)="onDelete()"></app-fancy-button>
         </mat-card-actions>
     </div>
 </mat-card>
