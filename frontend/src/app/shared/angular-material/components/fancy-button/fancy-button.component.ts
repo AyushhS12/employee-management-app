@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-fancy-button',
@@ -9,7 +8,8 @@ import { Observable } from 'rxjs';
 export class FancyButtonComponent {
   @Input() src!: string
   @Input() color: string = "primary"
-  
+  @Input() disabled: boolean = false
+
   @Output() click = new EventEmitter()
 
   onClick = () => this.click.emit()

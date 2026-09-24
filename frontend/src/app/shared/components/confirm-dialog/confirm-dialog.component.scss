@@ -30,7 +30,7 @@
     @extend .cursor-pointer;
     padding: 0.2rem 1rem;
     margin: 0 0.3rem;
-    border: none;
+    border: 2px solid white;
     border-radius: 1.2rem;
     transition: color 0.2s ease;
     transition: background 0.2s ease;
@@ -40,7 +40,7 @@
 .btn:hover {
     color: white;
     background-color: black;
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .close-btn {
@@ -51,6 +51,10 @@
     background-color: transparent;
     border: none;
     width: 1.2rem;
+}
+
+.content{
+    font-weight: bold;
 }
 
 img {

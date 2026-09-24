@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -6,16 +7,19 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./confirm-dialog.component.scss']
 })
 export class ConfirmDialogComponent {
-  @Output() ok = new EventEmitter<boolean>();
-  @Output() close = new EventEmitter<boolean>()
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {title: string, content?: string}) { }
+
+  // @Output() ok = new EventEmitter<boolean>();
+  // @Output() close = new EventEmitter<boolean>()
 
   color: string | null = null;
-  
-  handleConfirm(ok: boolean) {
-    this.ok.emit(ok)
-  }
 
-  closeModal() {
-    this.close.emit(true)
-  }
+  // handleConfirm(ok: boolean) {
+  //   this.ok.emit(ok)
+  // }
+
+  // closeModal() {
+  //   this.close.emit(true)
+  // }
 }

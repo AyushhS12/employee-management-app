@@ -6,6 +6,6 @@ export default class Employee {
     email!: string;
     username!: string;
     password!: string;
-    department!: DepartmentModel;
+    department!: string;
     role!: string;
 }

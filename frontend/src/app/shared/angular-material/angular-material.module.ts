@@ -15,6 +15,9 @@ import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button'
 import { MatInputModule } from '@angular/material/input'
 import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatIconModule } from '@angular/material/icon'
+import { MatTooltipModule } from '@angular/material/tooltip'
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -36,6 +39,9 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatButtonModule,
     MatSidenavModule,
+    MatDialogModule,
+    MatIconModule,
+    MatTooltipModule,
     FormsModule,
   ],
   exports: [
@@ -46,6 +52,10 @@ import { FormsModule } from '@angular/forms';
     FancyDrawerComponent,
     EmployeeCardComponent,
     MatSnackBarModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatTooltipModule,
     FormsModule
   ]
 })

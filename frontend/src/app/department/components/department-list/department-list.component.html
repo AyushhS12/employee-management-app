@@ -5,7 +5,7 @@
             <h4>{{dept.name}}</h4>
             <ng-container *ngIf="dept.employees.length === 0; else employeeTable">
                 <div>
-                    <h4>No employees belong to this department</h4>
+                    <h4>No employees found for this department</h4>
                 </div>
             </ng-container>
             <ng-template #employeeTable>

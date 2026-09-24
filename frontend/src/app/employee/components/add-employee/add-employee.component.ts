@@ -1,5 +1,7 @@
 import { Component, ElementRef, EventEmitter, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { departments, roles } from 'src/app/shared/models/Collections';
 import Employee from 'src/app/shared/models/Employee';
 
@@ -9,6 +11,8 @@ import Employee from 'src/app/shared/models/Employee';
   styleUrls: ['./add-employee.component.scss']
 })
 export class AddEmployeeComponent {
+
+  constructor(private dialog: MatDialog) { }
 
   // @ViewChild("confirmDialog") child!: ConfirmDialogComponent
 
@@ -23,37 +27,32 @@ export class AddEmployeeComponent {
 
   @Output() employeeCreated = new EventEmitter<Employee>()
   emp: Employee = new Employee();
-  static index = 5;
-  showConfirm = false
-  confirm!: boolean;
 
-  // constructor(){
-  //   this.emp.doj = new Date()
-  // }
-
-  handleClose(close: boolean) {
-    if (close)
-      this.showConfirm = false
+  openDialog(title: string, content: string) {
+    return this.dialog.open(
+      ConfirmDialogComponent,
+      {
+        data: {
+          title,
+          content
+        }
+      }
+    )
   }
 
-  handleConfirm(event: boolean) {
-    // console.log(this.child)
-    // console.log(event)
-    this.confirm = event
-    this.showConfirm = false
-    if (this.confirm) {
+  handleConfirm() {
+    const dialog = this.openDialog("Are you sure ?", "")
+    dialog.afterClosed().subscribe((data: boolean) => {
       const emp = {
         ...this.form.value,
-        id: AddEmployeeComponent.index++
+        id: this.emp.id
       }
       this.employeeCreated.emit(emp);
-      this.form.resetForm({ "department": '' })
-    }
-
+      this.form.resetForm({ "department": '', "role": '' })
+    })
   }
 
   handleSubmit(form: NgForm) {
     this.form = form
-    this.showConfirm = true
   }
 }

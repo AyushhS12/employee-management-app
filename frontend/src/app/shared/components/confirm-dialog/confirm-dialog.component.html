@@ -1,12 +1,13 @@
-<div class="modal-background" (click)="closeModal()">
-    <div class="confirm-dialog" (click)="$event.stopPropagation()">
-        <button class="close-btn" (click)="closeModal()"><img
-                src="./assets/close.svg"
-                alt="close"></button>
-        <span><ng-content></ng-content></span>
-        <div class="btns">
-            <button class="btn" [ngStyle]="{color:color}" (click)="handleConfirm(true)">Confirm</button>
-            <button class="btn" (click)="handleConfirm(false)">Cancel</button>
-        </div>
+<div class="modal-background">
+    <div class="confirm-dialog">
+        <button class="close-btn" mat-button mat-dialog-close><img src="./assets/close.svg" alt="close"></button>
+        <h4 mat-dialog-title align="center">{{data.title}}</h4>
+        <mat-dialog-content class="content">
+            {{data.content}}
+        </mat-dialog-content>
+        <mat-dialog-actions align="center" class="btns">
+            <button class="btn" [ngStyle]="{color:color}" [mat-dialog-close]="true">Confirm</button>
+            <button class="btn" mat-button mat-dialog-close>Cancel</button>
+        </mat-dialog-actions>
     </div>
 </div>

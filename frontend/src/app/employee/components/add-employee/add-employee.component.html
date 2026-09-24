@@ -45,7 +45,4 @@
             <input [class.submit-btn]="todoForm.valid" [disabled]="todoForm.invalid" type="submit" value="Add Employee">
         </div>
     </form>
-    <app-confirm-dialog #confirmDialog *ngIf="showConfirm" (ok)="handleConfirm($event)"
-        (close)="handleClose($event)">Are
-        you sure ?</app-confirm-dialog>
 </div>
