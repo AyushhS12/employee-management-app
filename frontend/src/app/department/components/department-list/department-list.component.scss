@@ -1,35 +1,79 @@
 @use '../../../shared/css/base';
+@import '../../../../../node_modules/bootstrap/scss/bootstrap.scss';
 
-*{
+
+* {
     box-sizing: border-box;
 }
 
-.mt-3 > *{
+.mt-3>* {
     margin: 1rem 0;
 }
 
-div{
+div {
     min-width: 80vw;
 }
 
-div[sidebar]{
+div[sidebar] {
     min-width: 40vw;
 }
 
-.department > *{
+.department>* {
     margin-bottom: 2rem;
 }
 
 
-th{
-    font-weight: bold;
+th {
+    @extend .fw-bold; 
 }
-th,td{
+
+th,
+td {
     text-align: center;
 }
+
 // th, td{
 //     border: 2px solid black;
 //     margin: 0;
 //     padding: 1.2rem 0;
 //     background-color: white;
 // }
+
+
+.mat-mdc-form-field.department-name {
+    // border: 2px solid black;
+    // border-radius: 5px;
+    margin-top: 60px;
+}
+
+.cdk-column-employees{
+    max-width: 8vw;
+}
+
+.cdk-column-actions{
+    max-width: 10vw;
+}
+
+.cdk-column-actions > button{
+    margin: 0 2rem;
+}
+
+.cdk-column-count{
+    max-width: 4vw;
+}
+
+.mat-drawer-inner-container{
+    min-width: 50vw;
+}
+
+mat-drawer-container{
+    height: 100vh;
+}
+
+mat-drawer{
+    overflow: hidden;
+}
+
+:host ::ng-deep .mat-sort-header-container {
+  justify-content: center !important;
+}

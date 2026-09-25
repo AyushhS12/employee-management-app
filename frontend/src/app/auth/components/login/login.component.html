@@ -4,7 +4,7 @@
         <input type="text" required [(ngModel)]="username" maxlength="40" name="username" id="username">
     </div> -->
     <!-- <app-fancy-input label="Enter Username" name="username" required ngModel #username="ngModel"></app-fancy-input> -->
-    <mat-form-field class="mt-4 w-50" [matTooltip]="username.touched && username.invalid?'Username is required':''"
+    <mat-form-field class="mt-4 w-25" [matTooltip]="username.touched && username.invalid?'Username is required':''"
         matTooltipPosition="right">
         <mat-label>Username</mat-label>
         <input matInput type="text" required ngModel #username="ngModel" required name="username" id="username">
@@ -18,7 +18,7 @@
     </div> -->
     <!-- <app-fancy-input required type="password" ngModel #password="ngModel" appPasswordValidator name="password"
     id="password" label="Password"></app-fancy-input> -->
-    <mat-form-field class="">
+    <mat-form-field class="mt-4 w-25">
         <mat-label>Password</mat-label>
         <input matInput type="password" required ngModel #password="ngModel" required name="password" id="password">
         <mat-error *ngIf="password.touched && password.invalid">

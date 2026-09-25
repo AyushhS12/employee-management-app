@@ -1,0 +1,21 @@
+<div class="main px-3" sidebar>
+    <div class="heading">
+        <h2 class="my-3">Add Department</h2>
+        <button (click)="close()" class="btn btn-outline-danger h-25 p-1">
+            <img src="/assets/close.svg" alt="">
+        </button>
+    </div>
+    <form class="align-items-center " #addDepartmentForm="ngForm" (ngSubmit)="handleSubmit(addDepartmentForm)">
+        <mat-form-field class="form-field w-100">
+            <mat-label>
+                Department Name
+            </mat-label>
+            <input matInput required ngModel #name="ngModel" name="name" type="text">
+            <mat-error *ngIf="name.invalid">
+                Department name is required
+            </mat-error>
+        </mat-form-field>
+        <button [disabled]="name.invalid" class="btn btn-outline-primary w-50" (click)="close()" type="submit">Add Department</button>
+    </form>
+    <button class="close-btn btn btn-outline-danger" (click)="close()">Close</button>
+</div>
