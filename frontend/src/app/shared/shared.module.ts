@@ -8,7 +8,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { AngularMaterialModule } from "./angular-material/angular-material.module";
-import { FormsModule } from "@angular/forms";
+import { UsernameValidatorDirective } from "./validators/username-validator.directive";
+import { PasswordValidatorDirective } from './validators/password-validator.directive';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -17,19 +19,25 @@ import { FormsModule } from "@angular/forms";
         PageNotFoundComponent,
         FooterComponent,
         HeaderComponent,
+        UsernameValidatorDirective,
+        PasswordValidatorDirective
     ],
     imports: [
         CommonModule,
         RouterLink,
         RouterLinkActive,
+        HttpClientModule,
         AngularMaterialModule
     ],
     exports: [
         CommonModule,
         ConfirmDialogComponent,
+        HttpClientModule,
         DaysPipe,
         HeaderComponent,
         FooterComponent,
+        UsernameValidatorDirective,
+        PasswordValidatorDirective,
         AngularMaterialModule,
     ]
 })

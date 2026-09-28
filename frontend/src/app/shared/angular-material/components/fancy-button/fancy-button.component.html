@@ -1,10 +1,10 @@
-<ng-container (click)="onClick()">
-    <button mat-icon-button [color]="color" *ngIf="src; else text">
-        <img [src]="src" alt="">
+<button [class.disabled]="disabled" (click)="onClick()" [disabled]="disabled" mat-icon-button [color]="color"
+    *ngIf="src; else text">
+    <img [src]="src" alt="">
+    <!-- <mat-icon svgIcon="/assets/check"></mat-icon> -->
+</button>
+<ng-template #text>
+    <button (click)="onClick()" mat-raised-button [disabled]="disabled" [color]="color">
+        <ng-content></ng-content>
     </button>
-    <ng-template #text>
-        <button mat-raised-button [color]="color">
-            <ng-content></ng-content>
-        </button>
-    </ng-template>
-</ng-container>
+</ng-template>

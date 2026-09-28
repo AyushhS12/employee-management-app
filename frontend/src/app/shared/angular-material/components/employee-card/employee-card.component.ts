@@ -34,8 +34,9 @@ export class EmployeeCardComponent {
         ...this.employee,
         ...this.form.value
       }
-      console.log(this.employee)
-      this.updateEmployee.emit(this.employee)
+      if (this.form.dirty) {
+        this.updateEmployee.emit(this.employee)
+      }
     }
   }
 

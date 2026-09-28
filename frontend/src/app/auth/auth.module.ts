@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthRouterModule } from './auth.router.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -24,7 +26,9 @@ import { SharedModule } from '../shared/shared.module';
     HttpClientModule,
     SharedModule,
     AuthRouterModule,
-  ],
+    MatInputModule,
+    MatButtonModule
+],
   exports: [
     LoginComponent,
     RegisterComponent,

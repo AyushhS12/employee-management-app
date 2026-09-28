@@ -1,12 +1,19 @@
-<div class="modal-background" (click)="closeModal()">
-    <div class="confirm-dialog" (click)="$event.stopPropagation()">
-        <button class="close-btn" (click)="closeModal()"><img
-                src="./assets/close.svg"
-                alt="close"></button>
-        <span><ng-content></ng-content></span>
-        <div class="btns">
-            <button class="btn" [ngStyle]="{color:color}" (click)="handleConfirm(true)">Confirm</button>
-            <button class="btn" (click)="handleConfirm(false)">Cancel</button>
-        </div>
-    </div>
+<!-- <div class="modal-background"> -->
+<div class="confirm-dialog">
+    <button class="close-btn btn btn-outline-danger p-0" mat-dialog-close><img src="./assets/close.svg"
+            alt="close"></button>
+    <h4 mat-dialog-title align="center">{{data.title}}</h4>
+    <mat-dialog-content class="content">
+        {{data.content}}
+        <mat-form-field>
+            <mat-label></mat-label>
+            <input type="text" name="remark" ngModel matInput #remark>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center" class="btns">
+        <button class="btn btn-outline-primary" [mat-dialog-close]="{action:true,remark:remark.value}">Confirm</button>
+        <button class="btn btn-outline-danger border border-1 border-danger"
+            [mat-dialog-close]="{remark:remark.value}">Cancel</button>
+    </mat-dialog-actions>
 </div>
+<!-- </div> -->

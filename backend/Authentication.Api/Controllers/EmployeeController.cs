@@ -94,6 +94,16 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
         }
     }
 
+    [HttpGet("exists/{username}")]
+    public async Task<IActionResult> CheckUsernameExists([FromRoute] string username)
+    {
+        var response = await mediator.Send(new CheckUsernameQuery { Username = username });
+        if (response is not null)
+        {
+            return Ok(new { Exists = true });
+        }
+        return Ok(null);
+    }
 
     //[Authorize("AdminOnly")]
     //[HttpPut("update/{id}")]

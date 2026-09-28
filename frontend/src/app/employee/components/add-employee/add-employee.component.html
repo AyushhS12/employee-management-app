@@ -18,7 +18,7 @@
         <div class="box">
             <!-- <label for="email">Enter Email</label>
         <input required [(ngModel)]="emp.email" name="email" type="text" placeholder="Enter your email" id="email"> -->
-            <app-fancy-input placeholder="Ex: a@a.com" required label="Enter Email" name="email"
+            <app-fancy-input type="email" placeholder="Ex: a@a.com" required label="Enter Email" name="email"
                 [(ngModel)]="emp.email"></app-fancy-input>
         </div>
         <div class="box">
@@ -45,7 +45,4 @@
             <input [class.submit-btn]="todoForm.valid" [disabled]="todoForm.invalid" type="submit" value="Add Employee">
         </div>
     </form>
-    <app-confirm-dialog #confirmDialog *ngIf="showConfirm" (ok)="handleConfirm($event)"
-        (close)="handleClose($event)">Are
-        you sure ?</app-confirm-dialog>
 </div>

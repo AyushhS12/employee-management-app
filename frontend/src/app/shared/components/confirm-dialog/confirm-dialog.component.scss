@@ -19,40 +19,50 @@
     border: 2px solid black;
     border-radius: 8px;
     padding: 2rem 3rem;
-    background: linear-gradient(45deg, rgb(16, 186, 81) 40%, white);
 }
 
 .cursor-pointer {
     cursor: pointer;
 }
 
-.btn {
-    @extend .cursor-pointer;
-    padding: 0.2rem 1rem;
-    margin: 0 0.3rem;
-    border: none;
-    border-radius: 1.2rem;
-    transition: color 0.2s ease;
-    transition: background 0.2s ease;
-    transition: transform 0.2s ease;
-}
+// .btn {
+//     @extend .cursor-pointer;
+//     padding: 0.2rem 1rem;
+//     margin: 0 0.3rem;
+//     border: 2px solid white;
+//     border-radius: 1.2rem;
+//     transition: color 0.2s ease;
+//     transition: background 0.2s ease;
+//     transition: transform 0.2s ease;
+// }
 
-.btn:hover {
-    color: white;
-    background-color: black;
-    transform: scale(1.2);
-}
+// .btn:hover {
+//     color: white;
+//     background-color: black;
+//     transform: scale(1.1);
+// }
 
 .close-btn {
     @extend .cursor-pointer;
     position: absolute;
     top: 10%;
     right: 5%;
-    background-color: transparent;
-    border: none;
-    width: 1.2rem;
+    border-radius: 8px;
 }
 
-img {
-    width: inherit;
+.content {
+    font-weight: bold;
+}
+
+// img {
+//     width: inherit;
+// }
+
+mat-dialog-actions {
+    & * {
+        box-sizing: border-box;
+    }
+
+    display: flex;
+    gap: 2rem;
 }

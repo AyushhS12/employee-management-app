@@ -10,7 +10,7 @@
                 <span *ngFor="let item of employee | keyvalue">
                     <span *ngIf="item.key=='id'; else elseBlock"></span>
                     <ng-template #elseBlock>
-                        <b>{{item.key}}</b>: {{$any(item.value).name ?? item.value}}
+                        <b>{{item.key | titlecase}}</b>: {{$any(item.value)}}
                         <br>
                     </ng-template>
                 </span>
@@ -23,16 +23,17 @@
                         <ng-container [ngSwitch]="item.key">
                             <ng-container *ngSwitchCase="'id'"></ng-container>
                             <ng-container *ngSwitchCase="'department'">
-                                <app-fancy-select title="Department" [ngModel]="$any(item.value).name" [name]="item.key" [selected]="$any(item.value).name"
-                                    [items]="departments"></app-fancy-select>
+                                <app-fancy-select title="Department" [ngModel]="$any(item.value)" [name]="item.key"
+                                    [selected]="$any(item.value)" [items]="departments"></app-fancy-select>
                             </ng-container>
                             <ng-container *ngSwitchCase="'role'">
-                                <app-fancy-select title="Role" [ngModel]="item.value" [name]="item.key" [selected]="item.value.toString()"
-                                    [items]="roles"></app-fancy-select>
+                                <app-fancy-select title="Role" [ngModel]="item.value" [name]="item.key"
+                                    [selected]="item.value.toString()" [items]="roles"></app-fancy-select>
                             </ng-container>
                             <ng-container *ngSwitchDefault>
-                                <app-fancy-input [label]="item.key | titlecase" required [name]="item.key"
-                                    [ngModel]="($any(item.value).name ?? item.value)"></app-fancy-input>
+                                <app-fancy-input [label]="item.key | titlecase" [minlength]="3" required
+                                    [name]="item.key"
+                                    [ngModel]="($any(item.value))"></app-fancy-input>
                             </ng-container>
                         </ng-container>
                     </ng-container>
@@ -49,7 +50,7 @@
                 (click)="finishEditMode()"></app-fancy-button>
             <app-fancy-button [ngStyle]="{display: editMode?'none':''}" src="/assets/edit.svg"
                 (click)="turnOnEditMode()"></app-fancy-button>
-            <app-fancy-button src="/assets/delete.svg" (click)="onDelete()"></app-fancy-button>
+            <app-fancy-button src="/assets/delete.svg" (clicked)="onDelete()"></app-fancy-button>
         </mat-card-actions>
     </div>
 </mat-card>

@@ -2,12 +2,14 @@
     <div class="main sidebar" sidebar>
         <app-add-employee></app-add-employee>
     </div>
-    <div class="main" *ngIf="employees">
+    <div class="main" *ngIf="employees; else noEmployees">
         <div class="heading">
             <h2>All Employees</h2>
             <!-- <app-fancy-button routerLink="/employee/add">Add employee</app-fancy-button> -->
-            <app-fancy-button (click)="addEmployeeDrawer.opened = !addEmployeeDrawer.opened">Add
-                employee</app-fancy-button>
+            <!-- <app-fancy-button (click)="addEmployeeDrawer.opened = !addEmployeeDrawer.opened">Add
+                employee</app-fancy-button> -->
+            <button mat-raised-button color="primary" (click)="addEmployeeDrawer.opened = !addEmployeeDrawer.opened">Add
+                Employee</button>
         </div>
         <ul class="list">
             <li *ngFor="let emp of employees">
@@ -18,4 +20,11 @@
             </li>
         </ul>
     </div>
+    <ng-template #noEmployees>
+        <div class="main">
+            <h4>
+                No Employees present
+            </h4>
+        </div>
+    </ng-template>
 </app-fancy-drawer>

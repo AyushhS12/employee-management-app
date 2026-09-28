@@ -34,7 +34,8 @@ public class Mapper : Profile
     {
         CreateMap<Employee, EmployeeDTO>().ReverseMap();
         CreateMap<EmployeeModel, EmployeeDTO>().ReverseMap()
-            .ForMember(u => u.Role, opt => opt.MapFrom(d => d.Role.ToString()));
+            .ForMember(u => u.Role, opt => opt.MapFrom(d => d.Role.ToString()))
+            .ForPath(m => m.Department, opts => opts.MapFrom(d => d.Department.Name));
     }
 
     void UpdateModelToUpdateCommand()
