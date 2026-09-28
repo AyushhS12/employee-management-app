@@ -14,6 +14,12 @@ export class EmployeeCardComponent {
   @Output() deletedId = new EventEmitter<number>()
   @ViewChild("editForm") form!: NgForm
 
+  remark = "Default remark (For Testing)"
+
+  setRemark(value: string){
+    this.remark = value
+  }
+
   roles = roles
   departments = departments
 

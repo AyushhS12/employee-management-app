@@ -1,19 +1,21 @@
 <!-- <div class="modal-background"> -->
 <div class="confirm-dialog">
-    <button class="close-btn btn btn-outline-danger p-0" mat-dialog-close><img src="./assets/close.svg"
-            alt="close"></button>
-    <h4 mat-dialog-title align="center">{{data.title}}</h4>
-    <mat-dialog-content class="content">
-        {{data.content}}
-        <mat-form-field>
-            <mat-label></mat-label>
+    <button class="close-btn btn btn-outline-danger p-0" mat-dialog-close matTooltip="Close"
+        matTooltipPosition="left"><img src="./assets/close.svg" alt="close"></button>
+    <h4 class="title" mat-dialog-title align="center">{{data.title}}</h4>
+    <mat-dialog-content class="content p-0">
+        <span>
+            {{data.content}}
+        </span>
+        <mat-form-field class="remark-field">
+            <mat-label>Remark</mat-label>
             <input type="text" name="remark" ngModel matInput #remark>
         </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions align="center" class="btns">
         <button class="btn btn-outline-primary" [mat-dialog-close]="{action:true,remark:remark.value}">Confirm</button>
-        <button class="btn btn-outline-danger border border-1 border-danger"
-            [mat-dialog-close]="{remark:remark.value}">Cancel</button>
+        <button class="btn btn-outline-danger border border-1 border-danger" [mat-dialog-close]="{remark:remark.value}"
+            matTooltip="Will set the remark" matTooltipPosition="right">Cancel</button>
     </mat-dialog-actions>
 </div>
 <!-- </div> -->

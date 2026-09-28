@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import Department from 'src/app/shared/models/Department';
 import { DepartmentService } from '../../services/department.service';
 import Employee from 'src/app/shared/models/Employee';
@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./department-list.component.scss']
 })
 export class DepartmentListComponent {
+  
   departments!: Department[]
 
   constructor(private service: DepartmentService, private dialog: MatDialog, private snackbar: MatSnackBar) {

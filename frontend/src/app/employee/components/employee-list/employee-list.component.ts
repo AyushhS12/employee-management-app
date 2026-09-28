@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, QueryList, ViewChildren } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import Employee from '../../models/Employee';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { EmployeeCardComponent } from 'src/app/shared/angular-material/components/employee-card/employee-card.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -12,6 +13,9 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog
 })
 export class EmployeeListComponent {
   employees!: Employee[]
+
+  @ViewChildren(EmployeeCardComponent) cards!: QueryList<EmployeeCardComponent>;
+
   constructor(
     private service: EmployeeService,
     private snackbar: MatSnackBar,
@@ -36,16 +40,25 @@ export class EmployeeListComponent {
 
   handleDelete(id: number) {
     const dialog = this.openDialog("Are you sure ?", `Employee with id: ${id} will be deleted`)
-    dialog.afterClosed().subscribe((data: boolean) => {
+    dialog.afterClosed().subscribe((data: { action: boolean, remark: string }) => {
       if (data) {
-        this.service.deleteById(id).subscribe((data) => {
-          if (data.success) {
-            this.snackbar.open("Deleted the employee with id: " + id, "", { duration: 2000 })
-            this.employees = this.employees.filter(e => e.id != id)
-          } else {
-            console.log(data)
+        if (this.cards) {
+          const card = this.cards.find((c) => c.employee.id === id)
+          if (card) {
+            card.setRemark(data.remark)
           }
-        })
+        }
+        if (data.action) {
+          this.service.deleteById(id).subscribe((data) => {
+            if (data.success) {
+              this.snackbar.open("Deleted the employee with id: " + id, "", { duration: 2000 })
+              this.employees = this.employees.filter(e => e.id != id)
+            } else {
+              this.snackbar.open("Operation Failed!", "Ok", { duration: 3000 })
+              console.log(data)
+            }
+          })
+        }
       }
     })
   }

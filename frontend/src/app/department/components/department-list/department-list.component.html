@@ -27,13 +27,16 @@
                     <ng-container matColumnDef="employees">
                         <th mat-header-cell *matHeaderCellDef>Show Employees</th>
                         <td mat-cell *matCellDef="let dept">
-                            <button [disabled]="dept.employees.length==0" [ngClass]="dept.employees.length==0?'btn btn-info':'btn btn-outline-primary'" [routerLink]="['/department',dept.name]">Show Employees</button>
+                            <button [disabled]="dept.employees.length==0"
+                                [ngClass]="dept.employees.length==0?'btn btn-dark':'btn btn-outline-primary'"
+                                [routerLink]="['/department',dept.name]">Show Employees</button>
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef>Actions</th>
                         <td mat-cell *matCellDef="let dept">
-                            <button (click)="handleDelete(dept.id)" class="btn btn-outline-danger" mat-icon-button><img src="/assets/delete.svg" alt="delete" /></button>
+                            <button (click)="handleDelete(dept.id)" class="btn btn-outline-danger" mat-icon-button><img
+                                    src="/assets/delete.svg" alt="delete" /></button>
                         </td>
                     </ng-container>
 
@@ -44,6 +47,7 @@
         </div>
     </mat-drawer-content>
     <mat-drawer #addDepartmentDrawer position="end" [disableClose]="true">
-        <app-add-department (closeDrawer)="addDepartmentDrawer.opened = false" (departmentAdded)="handleDepartmentAdded($event)"></app-add-department>
+        <app-add-department (closeDrawer)="addDepartmentDrawer.opened = false"
+            (departmentAdded)="handleDepartmentAdded($event)"></app-add-department>
     </mat-drawer>
 </mat-drawer-container>

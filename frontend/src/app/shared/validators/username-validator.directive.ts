@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Directive, forwardRef } from '@angular/core';
 import { AbstractControl, AsyncValidator, NG_ASYNC_VALIDATORS, ValidationErrors } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 
 @Directive({
