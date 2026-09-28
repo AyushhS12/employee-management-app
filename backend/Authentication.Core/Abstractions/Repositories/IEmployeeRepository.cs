@@ -11,4 +11,5 @@ public interface IEmployeeRepository
     Task<bool> DeleteByEmailAsync(string email);
     Task<bool> UpdateAsync(UpdateEmployeeDTO dto);
     Task<(IList<Employee> Employees, int Count)> GetByPageIndexAndSize(int pageIndex, int pageSize, string order);
+    Task<IList<Employee>> FuzzySearch(string query);
 }

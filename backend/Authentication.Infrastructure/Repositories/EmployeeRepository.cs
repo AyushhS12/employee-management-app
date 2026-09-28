@@ -105,4 +105,26 @@ internal class EmployeeRepository(IMapper mapper, AppDbContext db) : IEmployeeRe
                 throw new InvalidDataException("Invalid ordering value");
         }
     }
+
+    public async Task<IList<Employee>> FuzzySearch(string query)
+    {
+        return await db.Employees.Where(
+            e =>
+                e.Email.Contains(query) ||
+                e.Username.Contains(query) ||
+                e.Name.Contains(query)
+            ).Select(e => new
+            {
+                Employee = e,
+                Score =
+                e.Username == query ? 100 :
+                e.Email == query ? 90 :
+                e.Username.StartsWith(query) ? 80 :
+                e.Email.StartsWith(query) ? 70 :
+                e.Username.Contains(query) ? 60 :
+                e.Email.Contains(query) ? 50 : 0
+            })
+            .OrderByDescending(x => x.Score)
+            .Select(x => x.Employee).AsNoTracking().ToListAsync();
+    }
 }

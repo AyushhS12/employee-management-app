@@ -107,6 +107,14 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
         return Ok(null);
     }
 
+    [HttpGet("search/{query}")]
+    public async Task<IActionResult> SearchEmployees([FromRoute] string query)
+    {
+        var emps = await mediator.Send(new GetEmployeesByFuzzySearchQuery { Query = query });
+        return Ok(mapper.Map<IList<EmployeeModel>>(emps));
+    }
+
+
     //[Authorize("AdminOnly")]
     //[HttpPut("update/{id}")]
     //public async Task<IActionResult> UpdateEmployee(int id, UpdateEmployeeModel model)
