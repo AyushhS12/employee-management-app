@@ -86,7 +86,7 @@ internal class EmployeeRepository(IMapper mapper, AppDbContext db) : IEmployeeRe
     }
 
 
-    public async Task<IList<Employee>> GetByPageIndexAndSize(int pageIndex, int pageSize, string order)
+    public async Task<(IList<Employee> Employees, int Count)> GetByPageIndexAndSize(int pageIndex, int pageSize, string order)
     {
         var skip = (pageIndex - 1) * pageSize;
         if (skip < 0)
@@ -94,12 +94,13 @@ internal class EmployeeRepository(IMapper mapper, AppDbContext db) : IEmployeeRe
             throw new InvalidDataException("Index cannot be 0 or less than zero");
         }
         var list = db.Employees.Skip(skip).Take(pageSize).OrderBy(e => e.Name).AsNoTracking();
+        var count = db.Employees.Count();
         switch (order)
         {
             case "asc":
-                return await list.ToListAsync();
+                return (await list.ToListAsync(), Count: count);
             case "desc":
-                return await list.OrderByDescending(e => e.Name).ToListAsync();
+                return (await list.OrderByDescending(e => e.Name).ToListAsync(), count);
             default:
                 throw new InvalidDataException("Invalid ordering value");
         }

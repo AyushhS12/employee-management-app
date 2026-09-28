@@ -1,5 +1,5 @@
-import { Component, forwardRef, Input, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl, NgModel } from '@angular/forms';
+import { booleanAttribute, Component, forwardRef, Input, numberAttribute, OnInit, Optional, Self } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, NgControl, NgModel, ValidationErrors, Validator } from '@angular/forms';
 
 @Component({
   selector: 'app-fancy-input',
@@ -12,17 +12,26 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl, NgModel } from '@an
   //     multi: true
   //   }
   // ]
+
+  // providers: [
+  //   {
+  //     provide: NG_VALIDATORS,
+  //     useExisting: forwardRef(() => FancyInputComponent),
+  //     multi: true
+  //   }
+  // ]
 })
-export class FancyInputComponent implements ControlValueAccessor {
+export class FancyInputComponent implements ControlValueAccessor, Validator, OnInit {
   @Input() placeholder = ''
   @Input() label = ''
   @Input() name = ''
-  @Input() required!: string
+  @Input({ transform: numberAttribute }) minLength!: number
+  @Input({ transform: booleanAttribute }) required!: boolean
   @Input() type: string = "text"
   @Input() error!: string
 
   constructor(@Self() @Optional() public control: NgControl) {
-    if(this.control){
+    if (this.control) {
       this.control.valueAccessor = this
     }
   }
@@ -32,6 +41,12 @@ export class FancyInputComponent implements ControlValueAccessor {
   disbaled = false
   private onChange: (value: string) => void = () => { };
   private onTouched: () => void = () => { };
+
+
+  ngOnInit(): void {
+    this.control.control?.addValidators(this.validate.bind(this))
+    this.control.control?.updateValueAndValidity()
+  }
 
   writeValue(value: any): void {
     this.value = value ?? ''
@@ -58,6 +73,25 @@ export class FancyInputComponent implements ControlValueAccessor {
 
   onBlur() {
     this.onTouched()
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    const value = control.value
+    if (this.required && (!value || value.trim() === '')) {
+      return { required: true }
+    }
+
+    if (
+      this.minLength &&
+      value &&
+      value.length < this.minLength) {
+      return {
+        requiredLength: this.minLength,
+        actualLength: value.length
+      }
+    }
+
+    return null
   }
 
   // getPasswordErrors(password: NgControl): string {

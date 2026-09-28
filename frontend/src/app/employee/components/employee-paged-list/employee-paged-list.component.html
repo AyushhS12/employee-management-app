@@ -1,0 +1,27 @@
+<div class="main" *ngIf="currentEmployees; else noEmployees">
+    <div class="heading">
+        <h2>Paged List of Employees</h2>
+    </div>
+    <ul class="list list-group">
+        <li class="" *ngFor="let emp of currentEmployees">
+            <!-- <app-employee-card [employee]="emp"></app-employee-card> -->
+            <app-employee-card class="list-group-item list-group-item-action" [employee]="emp">
+            </app-employee-card>
+        </li>
+    </ul>
+    <mat-paginator
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [length]="length"
+    (page)="onPageChange($event)"
+    >
+    </mat-paginator>
+</div>
+<ng-template #noEmployees>
+    <div class="main">
+        <h4>
+            No Employees present
+        </h4>
+    </div>
+</ng-template>

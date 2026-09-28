@@ -10,5 +10,5 @@ public interface IEmployeeRepository
     Task<bool> DeleteByUsernameAsync(string username);
     Task<bool> DeleteByEmailAsync(string email);
     Task<bool> UpdateAsync(UpdateEmployeeDTO dto);
-    Task<IList<Employee>> GetByPageIndexAndSize(int pageIndex, int pageSize, string order);
+    Task<(IList<Employee> Employees, int Count)> GetByPageIndexAndSize(int pageIndex, int pageSize, string order);
 }

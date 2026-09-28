@@ -46,6 +46,7 @@
     align-items: center;
     gap: 1.2rem;
 }
+
 .remark-field {
   font-size: 15px;
 }
@@ -56,15 +57,16 @@
   padding-bottom: 6px;
 }
 
-// img {
-//     width: inherit;
-// }
 
 mat-dialog-actions {
     & * {
         box-sizing: border-box;
     }
-
+    
     display: flex;
     gap: 2rem;
 }
+
+// img {
+//     width: inherit;
+// }

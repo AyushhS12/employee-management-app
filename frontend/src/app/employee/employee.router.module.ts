@@ -4,6 +4,7 @@ import { EmployeeRouterComponent } from "./employee.router.component";
 import { AddEmployeeComponent } from "./components/add-employee/add-employee.component";
 import { EmployeeListComponent } from "./components/employee-list/employee-list.component";
 import { ProfileComponent } from "./components/profile/profile.component";
+import { EmployeePagedListComponent } from "./components/employee-paged-list/employee-paged-list.component";
 
 const routes: Routes = [
     {
@@ -17,6 +18,10 @@ const routes: Routes = [
             {
                 path: 'all',
                 component: EmployeeListComponent
+            },
+            {
+                path: 'paged-list',
+                component: EmployeePagedListComponent
             },
             {
                 path: 'profile',

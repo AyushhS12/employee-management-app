@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { EmployeeCardComponent } from 'src/app/shared/angular-material/components/employee-card/employee-card.component';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-employee-list',
@@ -26,12 +27,19 @@ export class EmployeeListComponent {
         return a.id < b.id ? -1 : 1
       })
     })
+    service.updateEmployee$.subscribe(emp => {
+      if (emp) this.handleUpdate(emp)
+    })
   }
 
   handleUpdate(emp: Employee) {
-    this.service.update(emp).subscribe((data) => {
+    this.service.update(emp).pipe(catchError(error => {
+      this.snackbar.open("Not Authorized", "Close", { duration: 2000 })
+      return throwError(() => error);
+    })).subscribe((data) => {
       if (data.success) {
-        this.snackbar.open("Updated the employee", "", { duration: 2000 })
+        this.snackbar.open("Employee Updated", "", { duration: 2000 })
+        this.service.sendEmployeeUpdate(emp)
       } else {
         console.log(data)
       }
@@ -71,7 +79,8 @@ export class EmployeeListComponent {
         data: {
           title,
           content
-        }
+        },
+        width: "500px"
       }
     )
   }

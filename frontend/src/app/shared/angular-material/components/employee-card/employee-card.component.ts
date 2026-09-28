@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import Employee from 'src/app/employee/models/Employee';
+import { EmployeeService } from 'src/app/employee/services/employee.service';
 import { departments, roles } from 'src/app/shared/models/Collections';
 
 @Component({
@@ -10,13 +11,20 @@ import { departments, roles } from 'src/app/shared/models/Collections';
 })
 export class EmployeeCardComponent {
   @Input() employee!: Employee
-  @Output() updateEmployee = new EventEmitter<Employee>()
   @Output() deletedId = new EventEmitter<number>()
   @ViewChild("editForm") form!: NgForm
 
+  constructor(private service: EmployeeService) {
+    service.employeeUpdated$.subscribe(emp => {
+      if (this.employee && emp && this.employee.id === emp.id) {
+        this.employee = { ...emp }
+      }
+    })
+  }
+
   remark = "Default remark (For Testing)"
 
-  setRemark(value: string){
+  setRemark(value: string) {
     this.remark = value
   }
 
@@ -36,12 +44,12 @@ export class EmployeeCardComponent {
   finishEditMode() {
     this.editMode = false
     if (this.form?.valid && this.form.value) {
-      this.employee = {
-        ...this.employee,
-        ...this.form.value
-      }
       if (this.form.dirty) {
-        this.updateEmployee.emit(this.employee)
+        const emp = {
+          ...this.employee,
+          ...this.form.value
+        }
+        this.service.setUpdateEmployee(emp)
       }
     }
   }

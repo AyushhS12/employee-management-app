@@ -1,0 +1,49 @@
+@use '../../../shared/css/base';
+
+.main{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 4.5rem 0;
+}
+
+.list{
+    flex: 1;
+    list-style: none;
+    min-width: 100vw;
+}
+
+.list li{
+    background-color: white;
+    margin: 0 3rem;
+    margin-bottom: 1.2rem;
+}
+
+.heading{
+    display: flex;
+    gap: 0.8rem;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 3rem;
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+// .mat-mdc-paginator-container{
+//     position: fixed;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     bottom: 11%;
+//     text-align: center;
+//     min-width: 100vw;
+// }
+
+
+mat-paginator{
+    min-width: 100vw !important;
+}
+
+:host ::ng-deep .mat-mdc-paginator-container{
+    // min-width: 100vw !important;
+    justify-content: center;
+}

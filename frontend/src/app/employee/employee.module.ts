@@ -8,7 +8,7 @@ import { EmployeeRouterModule } from './employee.router.module';
 import { EmployeeRouterComponent } from './employee.router.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { ProfileComponent } from './components/profile/profile.component'
-import { MatButtonModule } from '@angular/material/button';
+import { EmployeePagedListComponent } from './components/employee-paged-list/employee-paged-list.component';
 
 
 @NgModule({
@@ -17,13 +17,13 @@ import { MatButtonModule } from '@angular/material/button';
     AddEmployeeComponent,
     EmployeeRouterComponent,
     EmployeeListComponent,
-    ProfileComponent
+    ProfileComponent,
+    EmployeePagedListComponent,
   ],
   imports: [
     SharedModule,
     RouterOutlet,
     EmployeeRouterModule,
-    MatButtonModule
 ],
 })
 export class EmployeeModule { }

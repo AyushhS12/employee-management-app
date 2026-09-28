@@ -9,7 +9,6 @@ import { DepartmentTableComponent } from './components/department-table/departme
 import { AddDepartmentComponent } from './components/add-department/add-department.component';
 
 
-
 @NgModule({
   declarations: [
     AddDepartmentComponent,

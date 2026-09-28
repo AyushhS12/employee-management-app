@@ -15,6 +15,10 @@ export class ConfirmDialogComponent {
 
   color: string | null = null;
 
+  // constructor(){
+  //   const s = Object
+  // }
+
   // handleConfirm(ok: boolean) {
   //   this.ok.emit(ok)
   // }

@@ -43,6 +43,7 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
         return Ok(new { Success = await mediator.Send(mapper.Map<DeleteEmployeeCommand>(model)) });
     }
 
+    //[Authorize("AdminOnly")]
     [HttpPut("update")]
     public async Task<IActionResult> UpdateUser(UpdateEmployeeModel model)
     {
@@ -78,9 +79,10 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
             }
             try
             {
-                var dtos = await mediator.Send(query);
-                logger.LogInformation("Getting paged list with index = {Index} and size = {Size}", index, size);
-                return Ok(mapper.Map<IList<EmployeeModel>>(dtos));
+                var (dtos, count) = await mediator.Send(query);
+                logger.LogInformation("Getting paged list with index = {Index} and size = {Size}", index - 1, size);
+                var emps = mapper.Map<IList<EmployeeModel>>(dtos);
+                return Ok(new { Employees = emps, Count = count });
             }
             catch (InvalidOperationException ex)
             {

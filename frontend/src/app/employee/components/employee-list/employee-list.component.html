@@ -11,10 +11,10 @@
             <button mat-raised-button color="primary" (click)="addEmployeeDrawer.opened = !addEmployeeDrawer.opened">Add
                 Employee</button>
         </div>
-        <ul class="list">
-            <li *ngFor="let emp of employees">
+        <ul class="list list-group">
+            <li class="" *ngFor="let emp of employees">
                 <!-- <app-employee-card [employee]="emp"></app-employee-card> -->
-                <app-employee-card [employee]="emp" (updateEmployee)="handleUpdate($event)"
+                <app-employee-card class="list-group-item list-group-item-action" [employee]="emp"
                     (deletedId)="handleDelete($event)">
                 </app-employee-card>
             </li>

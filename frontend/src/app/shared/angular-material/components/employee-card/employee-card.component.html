@@ -23,11 +23,11 @@
                         <ng-container [ngSwitch]="item.key">
                             <ng-container *ngSwitchCase="'id'"></ng-container>
                             <ng-container *ngSwitchCase="'department'">
-                                <app-fancy-select title="Department" [ngModel]="$any(item.value)" [name]="item.key"
+                                <app-fancy-select title="Department" required [ngModel]="$any(item.value)" [name]="item.key"
                                     [selected]="$any(item.value)" [items]="departments"></app-fancy-select>
                             </ng-container>
                             <ng-container *ngSwitchCase="'role'">
-                                <app-fancy-select title="Role" [ngModel]="item.value" [name]="item.key"
+                                <app-fancy-select title="Role" [ngModel]="item.value" required [name]="item.key"
                                     [selected]="item.value.toString()" [items]="roles"></app-fancy-select>
                             </ng-container>
                             <ng-container *ngSwitchDefault>

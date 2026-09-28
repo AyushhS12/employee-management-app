@@ -42,7 +42,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatCardModule,
     MatButtonModule,
     MatSidenavModule,
-    MatDialogModule,
+    MatDialogModule, // here
     MatIconModule,
     MatTooltipModule,
     MatTableModule,
@@ -58,7 +58,7 @@ import { MatSortModule } from '@angular/material/sort';
     FancyDrawerComponent,
     EmployeeCardComponent,
     MatSnackBarModule,
-    MatDialogModule,
+    MatDialogModule, // here
     MatFormFieldModule,
     MatIconModule,
     MatTooltipModule,
