@@ -73,5 +73,10 @@ export class EmployeeService {
     const url = this.api + "/validate"
     return this.http.get<{valid: boolean}>(url);
   }
+
+  searchEmployees(query: string){
+    const url = this.api + "/search/" + query
+    return this.http.get<Employee[]>(url)
+  }
 }
 

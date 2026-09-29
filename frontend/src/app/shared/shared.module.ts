@@ -11,6 +11,7 @@ import { AngularMaterialModule } from "./angular-material/angular-material.modul
 import { UsernameValidatorDirective } from "./validators/username-validator.directive";
 import { PasswordValidatorDirective } from './validators/password-validator.directive';
 import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { HttpClientModule } from "@angular/common/http";
         RouterLink,
         RouterLinkActive,
         HttpClientModule,
+        ReactiveFormsModule,
         AngularMaterialModule
     ],
     exports: [
@@ -38,6 +40,7 @@ import { HttpClientModule } from "@angular/common/http";
         FooterComponent,
         UsernameValidatorDirective,
         PasswordValidatorDirective,
+        ReactiveFormsModule,
         AngularMaterialModule,
     ]
 })

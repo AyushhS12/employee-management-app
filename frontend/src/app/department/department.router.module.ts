@@ -4,6 +4,7 @@ import { DepartmentRouterComponent } from "./department.router.component";
 import { DepartmentListComponent } from "./components/department-list/department-list.component";
 import { DepartmentTableComponent } from "./components/department-table/department-table.component";
 import { AddDepartmentComponent } from "./components/add-department/add-department.component";
+import { formGuard } from "../core/guards/form.guard";
 
 const routes: Routes = [
     {
@@ -12,11 +13,12 @@ const routes: Routes = [
         children: [
             {
                 path: 'all',
-                component: DepartmentListComponent
+                component: DepartmentListComponent,
             },
             {
                 path: 'add',
-                component: AddDepartmentComponent
+                component: AddDepartmentComponent,
+                canDeactivate: [formGuard]
             },
             {
                 path: ':name',

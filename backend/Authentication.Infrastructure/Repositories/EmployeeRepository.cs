@@ -108,7 +108,7 @@ internal class EmployeeRepository(IMapper mapper, AppDbContext db) : IEmployeeRe
 
     public async Task<IList<Employee>> FuzzySearch(string query)
     {
-        return await db.Employees.Where(
+        return await db.Employees.Include(e => e.Department).Where(
             e =>
                 e.Email.Contains(query) ||
                 e.Username.Contains(query) ||

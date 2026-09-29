@@ -1,1 +1,45 @@
-<div class="main">Hello</div>
+<div class="main d-flex flex-direction-column align-items-start">
+    <mat-form-field class="m-auto">
+        <mat-label>
+            Search
+        </mat-label>
+        <input matInput type="search" [formControl]="searchControl">
+    </mat-form-field>
+    <ng-container *ngIf="value < 100 || displaySpinner; else results">
+        <mat-spinner class="align-self-center" [diameter]="40" [mode]="mode" [value]="value" />
+    </ng-container>
+    <ng-template #results>
+        <ng-container *ngIf="searchResults.length !== 0; else nothing">
+            <div class="results fw-bold fs-3 m-auto">
+                Search results for: {{searchControl.value}}
+            </div>
+            <table class="table table-bordered w-75" align="center">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let r of searchResults">
+                        <td>{{r.id}}</td>
+                        <td>{{r.name}}</td>
+                        <td>{{r.username}}</td>
+                        <td>{{r.email}}</td>
+                        <td>{{r.department}}</td>
+                        <td>{{r.role}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-container>
+        <ng-template #nothing>
+            <div class="results fw-bold fs-3 m-auto">
+                Nothing to display
+            </div>
+        </ng-template>
+    </ng-template>
+</div>

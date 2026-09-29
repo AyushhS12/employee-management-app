@@ -20,8 +20,10 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator'
-import { FormsModule } from '@angular/forms';
 import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
     FormsModule,
   ],
   exports: [
@@ -68,6 +72,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatSidenavModule,
     MatInputModule,
     MatButtonModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatListModule,
     FormsModule
   ]
 })

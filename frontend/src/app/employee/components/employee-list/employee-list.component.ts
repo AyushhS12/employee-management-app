@@ -46,14 +46,15 @@ export class EmployeeListComponent implements OnDestroy {
       } else {
         console.log(data)
       }
-    })
+    },
+      error => console.log(error))
   }
 
   handleDelete(id: number) {
     const dialog = this.openDialog("Are you sure ?", `Employee with id: ${id} will be deleted`)
     dialog.afterClosed().subscribe((data: { action: boolean, remark: string }) => {
       if (data) {
-        if(data.remark){
+        if (data.remark) {
           if (this.cards) {
             const card = this.cards.find((c) => c.employee.id === id)
             if (card) {

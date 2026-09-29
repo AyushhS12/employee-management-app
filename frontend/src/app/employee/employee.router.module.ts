@@ -7,6 +7,7 @@ import { ProfileComponent } from "./components/profile/profile.component";
 import { EmployeePagedListComponent } from "./components/employee-paged-list/employee-paged-list.component";
 import { SearchEmployeesComponent } from "./components/search-employees/search-employees.component";
 import { authGuard } from "../core/guards/auth.guard";
+import { formGuard } from "../core/guards/form.guard";
 
 const routes: Routes = [
     {
@@ -16,7 +17,8 @@ const routes: Routes = [
         children: [
             {
                 path: 'add',
-                component: AddEmployeeComponent
+                component: AddEmployeeComponent,
+                canDeactivate: [formGuard]
             },
             {
                 path: 'all',
