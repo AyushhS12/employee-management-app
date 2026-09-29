@@ -1,33 +1,36 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import Employee from '../../models/Employee';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { EmployeeCardComponent } from 'src/app/shared/angular-material/components/employee-card/employee-card.component';
-import { catchError, throwError } from 'rxjs';
+import { catchError, Subscription, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss']
 })
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnDestroy {
   employees!: Employee[]
 
   @ViewChildren(EmployeeCardComponent) cards!: QueryList<EmployeeCardComponent>;
+
+  employeeSubscription!: Subscription
+  updateEmployeeSubscription!: Subscription
 
   constructor(
     private service: EmployeeService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog
   ) {
-    service.getEmployees().subscribe((data) => {
+    this.employeeSubscription = service.getEmployees().subscribe((data) => {
       this.employees = data.sort((a, b) => {
         return a.id < b.id ? -1 : 1
       })
     })
-    service.updateEmployee$.subscribe(emp => {
+    this.updateEmployeeSubscription = service.updateEmployee$.subscribe(emp => {
       if (emp) this.handleUpdate(emp)
     })
   }
@@ -50,10 +53,12 @@ export class EmployeeListComponent {
     const dialog = this.openDialog("Are you sure ?", `Employee with id: ${id} will be deleted`)
     dialog.afterClosed().subscribe((data: { action: boolean, remark: string }) => {
       if (data) {
-        if (this.cards) {
-          const card = this.cards.find((c) => c.employee.id === id)
-          if (card) {
-            card.setRemark(data.remark)
+        if(data.remark){
+          if (this.cards) {
+            const card = this.cards.find((c) => c.employee.id === id)
+            if (card) {
+              card.setRemark(data.remark)
+            }
           }
         }
         if (data.action) {
@@ -71,17 +76,22 @@ export class EmployeeListComponent {
     })
   }
 
-
-  openDialog(title: string, content: string) {
+  openDialog(title: string, content: string, remarkRequired: boolean = true) {
     return this.dialog.open(
       ConfirmDialogComponent,
       {
         data: {
           title,
-          content
+          content,
+          remarkRequired
         },
         width: "500px"
       }
     )
+  }
+
+  ngOnDestroy() {
+    this.employeeSubscription.unsubscribe()
+    this.updateEmployeeSubscription.unsubscribe()
   }
 }

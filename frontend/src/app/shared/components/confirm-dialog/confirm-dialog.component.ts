@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { booleanAttribute, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -8,11 +8,12 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ConfirmDialogComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {title: string, content?: string}) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {title: string, content?: string, remarkRequired?: boolean}) { }
 
   // @Output() ok = new EventEmitter<boolean>();
   // @Output() close = new EventEmitter<boolean>()
 
+  remark!: string;
   color: string | null = null;
 
   // constructor(){

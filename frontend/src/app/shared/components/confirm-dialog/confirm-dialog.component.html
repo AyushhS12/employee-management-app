@@ -7,14 +7,14 @@
         <span>
             {{data.content}}
         </span>
-        <mat-form-field class="remark-field">
+        <mat-form-field *ngIf="data.remarkRequired" class="remark-field">
             <mat-label>Remark</mat-label>
-            <input type="text" name="remark" ngModel matInput #remark>
+            <input type="text" name="remark" [(ngModel)]="remark" matInput>
         </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions align="center" class="btns">
-        <button class="btn btn-outline-primary" [mat-dialog-close]="{action:true,remark:remark.value}">Confirm</button>
-        <button class="btn btn-outline-danger border border-1 border-danger" [mat-dialog-close]="{remark:remark.value}"
+        <button class="btn btn-outline-primary" [mat-dialog-close]="{action:true,remark:remark}">Confirm</button>
+        <button class="btn btn-outline-danger border border-1 border-danger" [mat-dialog-close]="{remark:remark}"
             matTooltip="Will set the remark" matTooltipPosition="right">Cancel</button>
     </mat-dialog-actions>
 </div>

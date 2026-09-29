@@ -8,7 +8,7 @@ namespace Authentication.Api.Controllers;
 public class AuthController(ILogger<AuthController> logger, IMapper mapper, IMediator mediator) : ControllerBase
 {
     [HttpPost("signup")]
-    public async Task<IActionResult> AddUser(AddEmployeeModel model)
+    public async Task<IActionResult> AddEmployee(AddEmployeeModel model)
     {
         var cmd = mapper.Map<AddEmployeeCommand>(model);
         try
@@ -36,4 +36,5 @@ public class AuthController(ILogger<AuthController> logger, IMapper mapper, IMed
         }
         return Ok(new { Token = token });
     }
+
 }

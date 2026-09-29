@@ -9,6 +9,7 @@ import { EmployeeRouterComponent } from './employee.router.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { ProfileComponent } from './components/profile/profile.component'
 import { EmployeePagedListComponent } from './components/employee-paged-list/employee-paged-list.component';
+import { SearchEmployeesComponent } from './components/search-employees/search-employees.component';
 
 
 @NgModule({
@@ -19,11 +20,13 @@ import { EmployeePagedListComponent } from './components/employee-paged-list/emp
     EmployeeListComponent,
     ProfileComponent,
     EmployeePagedListComponent,
+    SearchEmployeesComponent,
   ],
+  providers: [],
   imports: [
     SharedModule,
     RouterOutlet,
     EmployeeRouterModule,
-],
+  ],
 })
 export class EmployeeModule { }

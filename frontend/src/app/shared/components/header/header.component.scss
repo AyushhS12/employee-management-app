@@ -86,3 +86,18 @@ nav {
 .hidden{
     display: none;
 }
+
+.right-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.profile{
+    // padding: 1.2rem 0;
+    & img{
+        height: 40px;
+        width: 40px;
+    }
+}

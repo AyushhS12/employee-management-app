@@ -11,7 +11,7 @@ export class EmployeeService {
   private readonly api = environment.apiBaseUrl + "/employee"
   private token: string | null
   constructor(private http: HttpClient) {
-    this.token = localStorage.getItem("auth-token")
+    this.token = localStorage.getItem(environment.AUTH_TOKEN)
   }
 
   private updateEmployeeSubject$ = new BehaviorSubject<Employee | null>(null);
@@ -26,10 +26,16 @@ export class EmployeeService {
 
   employeeUpdated$ = this.employeeUpdatedSubject$.asObservable()
 
+
   sendEmployeeUpdate(emp: Employee) {
     this.employeeUpdatedSubject$.next(emp)
   }
 
+
+  addEmployee(emp: Employee) {
+    const url = environment.apiBaseUrl + "/auth/signup"
+    return this.http.post(url, emp)
+  }
 
   getEmployees() {
     const url = this.api + "/all";
@@ -43,28 +49,29 @@ export class EmployeeService {
 
   deleteById(id: number) {
     const url = this.api + "/delete";
-    if (this.token) {
-      const headers = new HttpHeaders({ "Authorization": "Bearer " + this.token })
-      return this.http.delete<{ success: boolean }>(url, { headers, body: { id } })
-    } else throw new Error("Invalid token")
+    return this.http.delete<{ success: boolean }>(url, { body: { id } })
   }
 
   update(emp: Employee) {
     const url = this.api + "/update"
-    if (this.token) {
-      console.log(emp)
-      const headers = new HttpHeaders({ "Authorization": "Bearer " + this.token })
-      return this.http.put<{ success: boolean }>(url, emp, { headers })
-    }
-    else throw new Error("Invalid token")
+    console.log(emp)
+    return this.http.put<{ success: boolean }>(url, emp)
   }
 
   getPagedList(pageSize: number, pageIndex: number) {
     const url = this.api + `/paged-list?index=${pageIndex + 1}&size=${pageSize}`
-    if (this.token) {
-      const headers = new HttpHeaders({ "Authorization": "Bearer " + this.token })
-      return this.http.get<{ employees: Employee[], count: number }>(url, { headers })
-    }
-    else throw new Error("Invalid token")
+    return this.http.get<{ employees: Employee[], count: number }>(url)
+  }
+
+  getProfileData(){
+    const url = this.api + "/profile"
+    return this.http.get(url)
+  }
+
+  
+  checkValidity(){
+    const url = this.api + "/validate"
+    return this.http.get<{valid: boolean}>(url);
   }
 }
+

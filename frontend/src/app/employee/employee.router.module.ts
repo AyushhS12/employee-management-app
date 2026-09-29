@@ -5,11 +5,14 @@ import { AddEmployeeComponent } from "./components/add-employee/add-employee.com
 import { EmployeeListComponent } from "./components/employee-list/employee-list.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { EmployeePagedListComponent } from "./components/employee-paged-list/employee-paged-list.component";
+import { SearchEmployeesComponent } from "./components/search-employees/search-employees.component";
+import { authGuard } from "../core/guards/auth.guard";
 
 const routes: Routes = [
     {
         path: '',
         component: EmployeeRouterComponent,
+        canActivate: [authGuard],
         children: [
             {
                 path: 'add',
@@ -22,6 +25,10 @@ const routes: Routes = [
             {
                 path: 'paged-list',
                 component: EmployeePagedListComponent
+            },
+            {
+                path: 'search',
+                component: SearchEmployeesComponent
             },
             {
                 path: 'profile',

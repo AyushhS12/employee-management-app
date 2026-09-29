@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Router } from '@angular/router';
 import Employee from '../../models/Employee';
+import { environment } from 'src/app/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -11,13 +12,10 @@ import Employee from '../../models/Employee';
 export class ProfileComponent {
   emp!: Employee
   constructor(private service: EmployeeService, private router: Router) {
-    const token = localStorage.getItem("auth-token");
-    if(!token){
-      router.navigate(['/auth/login'], {
-        state: {
-          error: "Please login again"
-        }
-      })
-    }
+  }
+
+  logout(){
+    localStorage.removeItem(environment.AUTH_TOKEN)
+    this.router.navigate(['/auth/login'])
   }
 }

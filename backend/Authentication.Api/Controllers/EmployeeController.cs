@@ -4,7 +4,7 @@ namespace Authentication.Api.Controllers;
 
 [Route("api/employee")]
 [ApiController]
-//[Authorize]
+[Authorize]
 public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapper, IMediator mediator) : ControllerBase
 {
     [HttpGet("profile")]
@@ -14,11 +14,17 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
         if (stringId is null)
         {
             logger.LogError("User not logged in");
-            throw new ArgumentNullException("User Id is null");
+            return Unauthorized();
         }
-        int id = int.Parse(stringId);
-        var user = await mediator.Send(new GetEmployeeQuery { Id = id });
-        return Ok(new { Message = "Profile Route", Role = User.Claims.Select(c => c.Type), User = mapper.Map<EmployeeModel>(user) });
+        if (int.TryParse(stringId, out int id))
+        {
+            var user = await mediator.Send(new GetEmployeeQuery { Id = id });
+            return Ok(new { Message = "Profile Route", Role = User.Claims.Select(c => c.Type), User = mapper.Map<EmployeeModel>(user) });
+        }
+        else
+        {
+            return Unauthorized();
+        }
     }
 
     [HttpGet("{id}")]
@@ -112,6 +118,12 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
     {
         var emps = await mediator.Send(new GetEmployeesByFuzzySearchQuery { Query = query });
         return Ok(mapper.Map<IList<EmployeeModel>>(emps));
+    }
+
+    [HttpGet("validate")]
+    public async Task<IActionResult> CheckValidity()
+    {
+        return Ok(new { Valid = true });
     }
 
 

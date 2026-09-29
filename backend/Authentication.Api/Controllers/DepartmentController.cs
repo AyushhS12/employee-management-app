@@ -4,10 +4,10 @@ namespace Authentication.Api.Controllers;
 
 [Route("api/department")]
 [ApiController]
-//[Authorize("AdminOnly")]
+[Authorize("AdminOnly")]
 public class DepartmentController(IMapper mapper, IMediator mediator) : ControllerBase
 {
-    [Authorize("AdminOnly")]
+    //[Authorize("AdminOnly")]
     [HttpPost("add")]
     public async Task<IActionResult> AddDepartment(AddDepartmentModel model)
     {
@@ -35,7 +35,7 @@ public class DepartmentController(IMapper mapper, IMediator mediator) : Controll
         return Ok(new { Employees = emps });
     }
 
-    [Authorize("AdminOnly")]
+    //[Authorize("AdminOnly")]
     [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteDepartment([FromRoute] int id)
     {
