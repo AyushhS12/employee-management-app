@@ -110,19 +110,19 @@ internal class EmployeeRepository(IMapper mapper, AppDbContext db) : IEmployeeRe
     {
         return await db.Employees.Include(e => e.Department).Where(
             e =>
-                e.Email.Contains(query) ||
-                e.Username.Contains(query) ||
-                e.Name.Contains(query)
+                e.Email.ToLower().Contains(query.ToLower()) ||
+                e.Username.ToLower().Contains(query.ToLower()) ||
+                e.Name.ToLower().Contains(query.ToLower())
             ).Select(e => new
             {
                 Employee = e,
                 Score =
-                e.Username == query ? 100 :
-                e.Email == query ? 90 :
-                e.Username.StartsWith(query) ? 80 :
-                e.Email.StartsWith(query) ? 70 :
-                e.Username.Contains(query) ? 60 :
-                e.Email.Contains(query) ? 50 : 0
+                e.Username.ToLower().Equals(query.ToLower()) ? 100 :
+                e.Email.ToLower().Equals(query.ToLower()) ? 90 :
+                e.Username.ToLower().StartsWith(query.ToLower()) ? 80 :
+                e.Email.ToLower().StartsWith(query.ToLower()) ? 70 :
+                e.Username.ToLower().Contains(query.ToLower()) ? 60 :
+                e.Email.ToLower().Contains(query.ToLower()) ? 50 : 0
             })
             .OrderByDescending(x => x.Score)
             .Select(x => x.Employee).AsNoTracking().ToListAsync();
