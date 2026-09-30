@@ -7,9 +7,14 @@
             <h2>All Employees</h2>
             <!-- <app-fancy-button routerLink="/employee/add">Add employee</app-fancy-button> -->
             <!-- <app-fancy-button (click)="addEmployeeDrawer.opened = !addEmployeeDrawer.opened">Add
-                employee</app-fancy-button> -->
-            <button mat-raised-button color="primary" (click)="addEmployeeDrawer.opened = !addEmployeeDrawer.opened">Add
-                Employee</button>
+                employee
+            </app-fancy-button> -->
+            <div class="d-flex right flex-column gap-2">
+                <button class="btn btn-outline-primary" (click)="addEmployeeDrawer.opened = !addEmployeeDrawer.opened">Add
+                    Employee
+                </button>
+                <button routerLink="/employee/paged-list" class="btn btn-outline-success">Paged-List</button>
+            </div>
         </div>
         <ul class="list list-group">
             <li class="" *ngFor="let emp of employees">
