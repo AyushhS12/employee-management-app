@@ -78,7 +78,7 @@ internal class EmployeeRepository(IMapper mapper, AppDbContext db) : IEmployeeRe
 
     public async Task<Employee?> GetByIdAsync(int id)
     {
-        return await db.Employees.Where(e => e.Id == id).SingleOrDefaultAsync();
+        return await db.Employees.Include(e => e.Department).Where(e => e.Id == id).SingleOrDefaultAsync();
     }
     public async Task<Employee?> GetByUsernameAsync(string username)
     {

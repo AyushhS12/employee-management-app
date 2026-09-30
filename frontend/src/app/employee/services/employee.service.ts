@@ -63,18 +63,18 @@ export class EmployeeService {
     return this.http.get<{ employees: Employee[], count: number }>(url)
   }
 
-  getProfileData(){
+  getProfileData() {
     const url = this.api + "/profile"
-    return this.http.get(url)
+    return this.http.get<{ message: string, role: string, employee: Employee }>(url)
   }
 
-  
-  checkValidity(){
+
+  checkValidity() {
     const url = this.api + "/validate"
-    return this.http.get<{valid: boolean}>(url);
+    return this.http.get<{ valid: boolean }>(url);
   }
 
-  searchEmployees(query: string){
+  searchEmployees(query: string) {
     const url = this.api + "/search/" + query
     return this.http.get<Employee[]>(url)
   }

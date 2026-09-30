@@ -1,8 +1,14 @@
 @use '../../../shared/css/base';
 
+:host {
+    display: block;
+    height: 100%;
+    min-height: 0;
+}
+
 .list{
     list-style: none;
-    min-width: 100vw;
+    min-width: 100%;
 }
 
 .list li{

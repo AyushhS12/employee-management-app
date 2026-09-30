@@ -10,11 +10,16 @@ import { environment } from 'src/app/environments/environment';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
-  emp!: Employee
+  emp?: Employee
+  editMode = false
   constructor(private service: EmployeeService, private router: Router) {
+    service.getProfileData().subscribe(res => {
+      console.log(res)
+      this.emp = res.employee
+    })
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem(environment.AUTH_TOKEN)
     this.router.navigate(['/auth/login'])
   }

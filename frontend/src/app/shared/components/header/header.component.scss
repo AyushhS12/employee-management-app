@@ -2,9 +2,13 @@
 
 nav {
     z-index: 100;
-    position: fixed;
-    min-width: 100vw;
-    background: linear-gradient(90deg, rgb(16, 186, 81), rgb(160, 250, 14));
+    // position: fixed;
+    // min-width: 100vw;
+    padding: 0.4rem 0;
+    // background: linear-gradient(90deg, rgb(16, 186, 81), rgb(160, 250, 14));
+    background: radial-gradient(circle at 20% 50%,
+            #312e81,
+            #010715 70%);
 }
 
 .cursor-pointer {
@@ -18,6 +22,7 @@ nav {
     align-items: center;
     list-style: none;
     box-sizing: border-box;
+    margin: 0.5rem 0
 }
 
 .links {
@@ -28,13 +33,32 @@ nav {
 }
 
 .link {
+    position: relative;
+    display: inline-block;
     text-decoration: none;
     color: white;
     font-size: larger;
-    border: 2px solid white;
-    border-radius: 3px;
+    // border: 2px solid white;
+    // border-radius: 3px;
     padding: 0.2rem 0.4rem;
-    transition: background-color 0.2s ease-out;
+    // transition: background-color 0.2s ease-out;
+}
+
+.link::after {
+    content: "";
+
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease-out;
+}
+
+.link:hover::after {
+    width: 100%;
 }
 
 @mixin link-style($color, $bg-color) {
@@ -42,9 +66,9 @@ nav {
     color: $color;
 }
 
-.link:hover {
-    @include link-style(black, white)
-}
+// .link:hover {
+//     @include link-style(black, white)
+// }
 
 .link-active {
     @include link-style(black, rgb(255, 214, 51))
@@ -80,24 +104,56 @@ nav {
 // }
 
 .logo {
+    @extend .cursor-pointer;
     margin: 0 2rem;
 }
 
-.hidden{
+.img-wrapper {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.profile-img {
+    display: block;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.img-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border: 2px solid #a5b4fc;
+    border-radius: 50%;
+
+    transform: scale(0.8);
+    opacity: 0;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.img-wrapper:hover::after {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.hidden {
     display: none;
 }
 
-.right-side{
+.right-side {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
+    margin: 0 1rem;
 }
 
-.profile{
-    // padding: 1.2rem 0;
-    & img{
-        height: 40px;
-        width: 40px;
-    }
+.active img {
+    border: 2px solid white;
 }

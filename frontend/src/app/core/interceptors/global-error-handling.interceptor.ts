@@ -17,9 +17,9 @@ export class GlobalErrorHandlingInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     next.handle(request).pipe(
-      // tap(data => {
-      //   console.log
-      // }),
+      tap(data => {
+        console.log(data)
+      }),
       catchError((error: HttpErrorResponse) => {
         console.log("Http Error: ", error.message)
 
@@ -28,7 +28,7 @@ export class GlobalErrorHandlingInterceptor implements HttpInterceptor {
         }
         else if(error.status === 401){
           this.toaster.error("Login please", "Unauthorized", {timeOut: 3000})
-          this.router.navigate(['/atuh/login'])
+          this.router.navigate(['/auth/login'])
         }
         else if(error.status === 403){
           this.toaster.error("Not permitted", "Unauthorized", {timeOut: 3000})

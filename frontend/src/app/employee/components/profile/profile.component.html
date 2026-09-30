@@ -1,3 +1,25 @@
-<div class="main">
-    <button class="btn btn-danger" (click)="logout()">Logout</button>
+<div class="main d-flex flex-column gap-5">
+    <div class="header m-auto rounded d-flex w-75 justify-content-between align-items-center bg-dark">
+        <div class="profile ">
+            <img src="/favicon.ico" alt="">
+        </div>
+        <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </div>
+    <main *ngIf="!editMode; else editBlock" class="content d-flex flex-column gap-4 bg-white w-75 px-5 py-4 rounded">
+        <span class="d-flex justify-content-between info"><b>Name: </b>{{emp?.name}}</span>
+        <span class="d-flex justify-content-between info"><b>Username: </b>{{emp?.username}}</span>
+        <span class="d-flex justify-content-between info"><b>Email: </b>{{emp?.email}}</span>
+        <span class="d-flex justify-content-between info"><b>Department: </b>{{emp?.department}}</span>
+        <span class="d-flex justify-content-between info"><b>Role: </b>{{emp?.role}}</span>
+    </main>
+    <ng-template #editBlock>
+        <main class="content d-flex flex-column gap-4 bg-white w-75 px-5 py-4 rounded">
+            <span class="d-flex justify-content-between info"><b>Name: </b>{{emp?.name}}</span>
+            <span class="d-flex justify-content-between info"><b>Username: </b>{{emp?.username}}</span>
+            <span class="d-flex justify-content-between info"><b>Email: </b>{{emp?.email}}</span>
+            <span class="d-flex justify-content-between info"><b>Department: </b>{{emp?.department}}</span>
+            <span class="d-flex justify-content-between info"><b>Role: </b>{{emp?.role}}</span>
+        </main>
+    </ng-template>
+    <button class="btn btn-outline-primary">Edit Details</button>
 </div>

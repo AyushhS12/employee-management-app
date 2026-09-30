@@ -8,8 +8,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { AngularMaterialModule } from "./angular-material/angular-material.module";
-import { UsernameValidatorDirective } from "./validators/username-validator.directive";
-import { PasswordValidatorDirective } from './validators/password-validator.directive';
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 
@@ -20,8 +18,6 @@ import { ReactiveFormsModule } from "@angular/forms";
         PageNotFoundComponent,
         FooterComponent,
         HeaderComponent,
-        UsernameValidatorDirective,
-        PasswordValidatorDirective
     ],
     imports: [
         CommonModule,
@@ -38,8 +34,6 @@ import { ReactiveFormsModule } from "@angular/forms";
         DaysPipe,
         HeaderComponent,
         FooterComponent,
-        UsernameValidatorDirective,
-        PasswordValidatorDirective,
         ReactiveFormsModule,
         AngularMaterialModule,
     ]

@@ -17,7 +17,7 @@ export class AuthTokenInterceptor implements HttpInterceptor {
   constructor(private router: Router, private toaster: ToastrService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (request.url.includes("/api/auth")) {
+    if (request.url.includes("/api/auth") || request.url.includes("/employee/exists")) {
       return next.handle(request);
     }
     const token = localStorage.getItem(environment.AUTH_TOKEN);

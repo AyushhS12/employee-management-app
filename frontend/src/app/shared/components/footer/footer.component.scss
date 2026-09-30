@@ -1,11 +1,14 @@
 footer {
-    position: fixed;
-    min-width: 100vw;
-    bottom: 0;
-    background: linear-gradient(90deg, rgb(16, 186, 81), rgb(160, 250, 14));
+    // position: fixed;
+    // bottom: 0;
+    // min-width: 100vw;
+    // background: linear-gradient(90deg, rgb(16, 186, 81), rgb(160, 250, 14));
+    background: radial-gradient(circle at 20% 50%,
+            #312e81,
+            #010715 70%);
     color: white;
     font: bold;
     text-align: center;
-    padding: 1.5rem;
-    z-index: 10;
+    padding: 1rem 0;
+    // z-index: 10;
 }

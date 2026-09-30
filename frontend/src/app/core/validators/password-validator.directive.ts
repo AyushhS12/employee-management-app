@@ -28,7 +28,8 @@ export class PasswordValidatorDirective implements Validator {
 
     const containsSpace = data.includes(' ');
 
-    const isValid = hasUpperCase && hasLowerCase && hasNumericValue && containsSpace
+    const isValid = hasUpperCase && hasLowerCase && hasNumericValue && !containsSpace
+    console.log("Password is valid: ", isValid)
     return !isValid ? { hasUpperCase, hasLowerCase, hasNumericValue, containsSpace } : null
 
     // const hasUpperCase = /[A-Z]+/.test(data)

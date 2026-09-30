@@ -1,21 +1,46 @@
 <div class="main">
+
     <h1>Sign-Up</h1>
+
+    <!-- <form [formGroup]="form" (ngSubmit)="''">
+        <mat-form-field formControlName="name">
+            <mat-label>Name</mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+        <mat-form-field formControlName="username">
+            <mat-label>Username</mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+        <mat-form-field formControlName="email">
+            <mat-label>Email</mat-label>
+            <input matInput type="email">
+        </mat-form-field>
+        <mat-form-field formControlName="password">
+            <mat-label>Password</mat-label>
+            <input matInput type="password">
+        </mat-form-field>
+        <mat-form-field formControlName="department">
+            <mat-label>Department</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let dept of departments.sort()">{{dept}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field formControlName="role">
+            <mat-label>Role</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let role of roles.sort()">{{role}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form> -->
+
     <form #registrationForm="ngForm" (ngSubmit)="handleRegistration(registrationForm)">
-        <!-- <div class="box">
-            <label for="name">Enter Name</label><br>
-            <input required type="text" minlength="3" ngModel name="name" id="name">
-        </div> -->
         <mat-form-field class="box">
             <input matInput required type="text" maxlength="100" ngModel #name="ngModel" name="name" id="name"
                 placeholder="Name">
             <mat-error *ngIf="name.touched && name.invalid">
-                <span *ngIf="username.errors">Enter a valid name</span>
+                <span *ngIf="name.errors">Enter a valid name</span>
             </mat-error>
         </mat-form-field>
-        <!-- <div class="box">
-            <label for="email">Enter Email</label><br>
-            <input required type="email" maxlength="100" ngModel name="email" id="email">
-        </div> -->
         <mat-form-field class="box">
             <input matInput required type="text" maxlength="100" ngModel #email="ngModel" name="email" id="email"
                 placeholder="Email">
@@ -24,14 +49,11 @@
             </mat-error>
         </mat-form-field>
         <mat-form-field class="box">
-            <!-- <div class="box"> -->
-            <!-- <label for="username">Enter Username</label><br> -->
             <input matInput required appUsernameValidator type="text" maxlength="40" ngModel #username="ngModel"
                 name="username" id="username" placeholder="Username">
             <mat-error *ngIf="username.touched && username.invalid">
                 <span *ngIf="username.errors?.['exists']">Username already exists</span>
             </mat-error>
-            <!-- </div> -->
         </mat-form-field>
         <mat-form-field class="box pass">
             <input matInput required appPasswordValidator type="password" ngModel #password="ngModel" name="password"
@@ -44,30 +66,13 @@
                     </button>
                 </mat-error>
             </div>
-            <!-- <mat-error *ngIf="password.touched && password.invalid">
-                <div *ngIf="password.errors?.['hasUppercase']===false">Password must contain an uppercase</div>
-                <div *ngIf="password.errors?.['hasLowercase']===false">Password must contain an lowercase</div>
-                <div *ngIf="password.errors?.['hasNumericValue']===false">Password must contain a numeric value</div>
-            </mat-error> -->
         </mat-form-field>
-        <!-- <mat-form-field class="box"> -->
-        <!-- <select required ngModel name="department" id="department">
-                <option value="">Select Department</option>
-                <option *ngFor="let department of departments; let i=index" [value]="department">{{department}}</option>
-            </select> -->
         <app-fancy-select ngModel name="department" title="Department" [items]="departments"></app-fancy-select>
-        <!-- </mat-form-field> -->
-        <!-- <div class="box">
-        <select required ngModel name="role" id="role">
-            <option value="">Select Role</option>
-            <option *ngFor="let role of roles; let i=index" [value]="role">{{role}}</option>
-        </select>
-    </div> -->
         <app-fancy-select ngModel name="role" title="Role" [items]="roles"></app-fancy-select>
         <div class="box">
-            <!-- <input [disabled]="registrationForm.invalid" [ngClass]="registrationForm.invalid?'btn-disabled':'btn-primary'"
-                type="submit" value="Register"> -->
-            <button mat-stroked-button [disabled]="registrationForm.invalid" [ngClass]="registrationForm.invalid?'btn-disabled':'btn-primary'">Register</button>
+            <button mat-stroked-button [disabled]="registrationForm.invalid"
+                [ngClass]="registrationForm.invalid?'btn-disabled':'btn-primary'">Register</button>
         </div>
     </form>
+
 </div>

@@ -23,14 +23,14 @@ import { GlobalErrorHandlingInterceptor } from './core/interceptors/global-error
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthTokenInterceptor,
-      multi:true
+      useClass: GlobalErrorHandlingInterceptor,
+      multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: GlobalErrorHandlingInterceptor,
-      multi:true
-    }
+      useClass: AuthTokenInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent],
   declarations: [

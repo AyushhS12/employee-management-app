@@ -1,0 +1,64 @@
+.layout{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+// .layout app-header{
+//     flex: 0 0 3rem;
+// }
+
+.main-content{
+    flex: 1;
+    min-height: 0;
+    // max-width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.layout app-footer{
+    flex-shrink: 1;
+}
+
+
+.main-content {
+    overflow-y: auto;
+
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #6366f1 transparent;
+}
+
+/* Chrome / Edge / Safari */
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #6366f1,
+        #312e81
+    );
+    border-radius: 10px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #818cf8,
+        #4338ca
+    );
+}
+
+/* Remove arrows */
+.main-content::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+}

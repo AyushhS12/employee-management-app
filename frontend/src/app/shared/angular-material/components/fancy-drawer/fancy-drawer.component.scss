@@ -1,11 +1,18 @@
-mat-drawer-container{
-    height: 100vh;
+:host {
+    display: block;
+    height: 100%;
+    min-height: 0;
+}
+
+mat-drawer-container {
+    height: 100%;
+    min-height: 0;
+}
+
+mat-drawer-content {
+    overflow: auto;
 }
 
 mat-drawer{
     width: fit-content;
-}
-
-mat-drawer-content{
-    overflow: auto;
 }

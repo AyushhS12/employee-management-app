@@ -53,8 +53,8 @@ export class DepartmentListComponent {
 
   handleDelete(id: number) {
     const dialog = this.dialog.open(ConfirmDialogComponent, { data: { title: "Are you sure ?", content: `Department with ID ${id} will be deleted` } })
-    dialog.afterClosed().subscribe((data: boolean) => {
-      if (data) {
+    dialog.afterClosed().subscribe((data: {action: boolean, remark?: string}) => {
+      if (data && data.action) {
         console.log(id)
         this.service.deleteDepartment(id).subscribe(data => {
           if (data.success) {

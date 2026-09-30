@@ -4,9 +4,9 @@ namespace Authentication.Api.Controllers;
 
 [Route("api/employee")]
 [ApiController]
-[Authorize]
 public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapper, IMediator mediator) : ControllerBase
 {
+    [Authorize]
     [HttpGet("profile")]
     public async Task<IActionResult> GetProfile()
     {
@@ -18,8 +18,8 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
         }
         if (int.TryParse(stringId, out int id))
         {
-            var user = await mediator.Send(new GetEmployeeQuery { Id = id });
-            return Ok(new { Message = "Profile Route", Role = User.Claims.Select(c => c.Type), User = mapper.Map<EmployeeModel>(user) });
+            var employee = await mediator.Send(new GetEmployeeQuery { Id = id });
+            return Ok(new { Message = "Profile Route", Role = User.Claims.Select(c => c.Type), Employee = mapper.Map<EmployeeModel>(employee) });
         }
         else
         {
@@ -27,6 +27,7 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
         }
     }
 
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
@@ -50,6 +51,7 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
     }
 
     //[Authorize("AdminOnly")]
+    [Authorize]
     [HttpPut("update")]
     public async Task<IActionResult> UpdateUser(UpdateEmployeeModel model)
     {
@@ -113,6 +115,7 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
         return Ok(null);
     }
 
+    [Authorize]
     [HttpGet("search/{query}")]
     public async Task<IActionResult> SearchEmployees([FromRoute] string query)
     {
@@ -120,6 +123,7 @@ public class EmployeeController(ILogger<EmployeeController> logger, IMapper mapp
         return Ok(mapper.Map<IList<EmployeeModel>>(emps));
     }
 
+    [Authorize]
     [HttpGet("validate")]
     public async Task<IActionResult> CheckValidity()
     {

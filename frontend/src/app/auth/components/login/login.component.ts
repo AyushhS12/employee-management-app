@@ -46,6 +46,9 @@ export class LoginComponent implements OnInit, DoCheck, OnDestroy {
       this.toaster.success("Login Successful!", "Success", { timeOut: 3000 })
       this.snackBar.open("Login Successful!", "", { duration: 3000 })
       this.router.navigate(['/employee/profile'])
-    });
+    },
+      (error) => {
+        console.log("login component: ", error.message);
+      });
   }
 }

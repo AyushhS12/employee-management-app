@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgForm, NgModel } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, NgModel, Validators } from '@angular/forms';
 import { departments, roles } from 'src/app/shared/models/Collections';
 import RegisterEmployee from '../../models/RegisterEmployee';
 import { AuthService } from '../../services/auth.service';
@@ -43,10 +43,34 @@ export class RegisterComponent {
     if (errors.hasNumericValue === false) {
       messages.push("Password must contain a Numeric value")
     }
-    if(password.value && password.value.length<8){
+    if(errors.containsSpace){
+      messages.push("Password cannot contain spaces")
+    }
+    if (password.value && password.value.length < 8) {
       messages.push("Password must be 8 characters long")
     }
 
     return messages.join(' | ')
   }
+
+
+  // form = new FormGroup({
+  //   name: new FormControl('', [
+  //     Validators.required,
+  //     Validators.min(3)
+  //   ]),
+  //   email: new FormControl('', [
+  //     Validators.email,
+  //     Validators.required,
+  //     Validators.min(3)
+  //   ]
+  //   ),
+  //   username: new FormControl('', [
+  //     Validators.required,
+  //     Validators.min(3)
+  //   ]),
+  //   password: new FormControl('', [Validators.required, Validators.min(8)]),
+  //   department: new FormControl('', Validators.required),
+  //   role: new FormControl('', Validators.required),
+  // })
 }

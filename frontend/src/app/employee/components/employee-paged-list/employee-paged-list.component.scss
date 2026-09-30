@@ -3,14 +3,33 @@
 .main{
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    padding: 4.5rem 0;
 }
 
+.title {
+    position: relative;
+    display: inline-block;
+}
+
+.title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+
+    transition: width 0.3s ease-out;
+}
+
+.title:hover::after {
+    width: 100%;
+}
 .list{
     flex: 1;
     list-style: none;
-    min-width: 100vw;
+    min-width: 100%;
 }
 
 .list li{

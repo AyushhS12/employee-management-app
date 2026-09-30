@@ -75,6 +75,7 @@ import { FormsModule } from '@angular/forms';
     MatMenuModule,
     MatProgressSpinnerModule,
     MatListModule,
+    MatSelectModule,
     FormsModule
   ]
 })
